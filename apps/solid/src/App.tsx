@@ -7,17 +7,16 @@ import type { Component } from 'solid-js'
 
 const MayBe: Component<{
 	className: string
-}> = ({
-	className
-}) => <div class={className}>may be this gives editor support</div>
+}> = ({ className }) => (
+	<div class={className}>may be this gives editor support</div>
+)
 
 const Profile: Component = () => {
 	return (
 		<div class="bg-red-500 text-center">
 			Loggedin User Profile
 			<p>Proceted data</p>
-			<MayBe
-			className=''/>
+			<MayBe className="" />
 		</div>
 	)
 }

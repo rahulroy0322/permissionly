@@ -51,8 +51,6 @@ const features = [
 ]
 
 const ProcetedData = () => {
-	console.log('here')
-
 	return <div className="text-2xl text-white">Proceted data</div>
 }
 

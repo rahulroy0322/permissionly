@@ -26,12 +26,12 @@ a:hover {
 }
 
 body {
-	@apply bg-teal-500;
 	display: flex;
 	place-items: center;
 	min-width: 320px;
 	min-height: 100vh;
 	margin: 0;
+	@apply bg-teal-500;
 }
 
 h1 {

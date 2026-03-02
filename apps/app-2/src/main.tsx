@@ -1,9 +1,9 @@
-import { createRouter, RouterProvider } from '@tanstack/react-router'
-import React, { type FC } from 'react'
+import { createRouter } from '@tanstack/react-router'
+import { Can } from 'policy/web'
+import type { FC } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Button } from 'ui/ui/button'
 import { routeTree } from './routeTree.gen'
-import { Can } from 'policy/web'
 
 const router = createRouter({
 	routeTree,
@@ -33,19 +33,24 @@ const Profile: FC = () => {
 	)
 }
 
-
 // my impl
 // TODO!
 const MyApp: FC = () => {
-	return <div>
-		<Button>hi</Button>
-		<Can user={{
-			id: '',
-			role: 'super'
-		}} resorce='todos' action='view'>
-			{Profile}
-		</Can>
-	</div>
+	return (
+		<div>
+			<Button>hi</Button>
+			<Can
+				action="view"
+				resorce="todos"
+				user={{
+					id: '',
+					role: 'super',
+				}}
+			>
+				{Profile}
+			</Can>
+		</div>
+	)
 }
 
 const rootElement = document.getElementById('app')!

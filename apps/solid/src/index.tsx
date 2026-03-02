@@ -1,29 +1,32 @@
 /* @refresh reload */
 import { render } from 'solid-js/web'
 import './index.css'
+import { Route, Router } from '@solidjs/router'
 import App from './App.tsx'
-import { Route, Router } from '@solidjs/router';
-
-
 
 // const root = document.getElementById('root')
 
 // render(() => <App />, root!)
 
-const wrapper = document.getElementById("app");
+const wrapper = document.getElementById('app')
 
 if (!wrapper) {
-    throw new Error("Wrapper div not found");
+	throw new Error('Wrapper div not found')
 }
 
-render(() => <Router>
-    <Route path="/" component={App} />
+render(
+	() => (
+		<Router>
+			<Route
+				component={App}
+				path="/"
+			/>
 
-     {/* <Route path="*404" component={NotFound} /> */}
-</Router>, wrapper)
-
-
-
+			{/* <Route path="*404" component={NotFound} /> */}
+		</Router>
+	),
+	wrapper
+)
 
 // import { A } from "@solidjs/router";
 

@@ -1,5 +1,5 @@
 {
-  "name": "permissionify",
+  "name": "permissionly",
   "private": true,
   "scripts": {
     "build": "turbo run build --parallel",

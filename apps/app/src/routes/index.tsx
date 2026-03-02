@@ -7,8 +7,8 @@ import {
 	Waves,
 	Zap,
 } from 'lucide-react'
-import type { FC } from 'react'
 import { Can } from 'policy/web'
+import type { FC } from 'react'
 
 export const Route = createFileRoute('/')({ component: App })
 
@@ -59,14 +59,16 @@ const Profile: FC = () => {
 	)
 }
 function App() {
-
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-
-			<Can user={{
-				id: '',
-				role: 'super'
-			}} resorce='todos' action='view'>
+			<Can
+				action="view"
+				resorce="todos"
+				user={{
+					id: '',
+					role: 'super',
+				}}
+			>
 				{Profile}
 			</Can>
 

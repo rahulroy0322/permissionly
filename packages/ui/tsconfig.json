@@ -8,7 +8,7 @@
       "DOM.Iterable"
     ],
     "module": "ESNext",
-    "types": ["node"],
+    // "types": ["node"],
     "skipLibCheck": true,
 
      /* Bundler mode */
@@ -37,6 +37,7 @@
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "src/components/ui/*"
   ]
 }
