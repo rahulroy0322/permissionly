@@ -1,0 +1,22 @@
+{
+  "name": "policy",
+  "version": "0.0.0",
+  "description": "",
+  "private": true,
+  "exports": {
+    ".": "./src/core/main.ts",
+    "./web": "./src/web/main.tsx",
+    "./solid": "./src/solid/main.tsx"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "Rahul Roy",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "react": "^19.2.0",
+    "schema": "workspace:*",
+    "solid-js": "^1.9.10",
+    "typescript": "^5.9.3"
+  }
+}

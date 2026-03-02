@@ -1,0 +1,20 @@
+{
+  "name": "permissionify",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build --parallel",
+    "dev": "turbo run dev --parallel",
+    "check": "biome check",
+    "check:fix": "biome check --fix",
+    "start": "turbo run dev"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.4",
+    "turbo": "^2.8.10",
+    "typescript": "5.9.2"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18"
+  }
+}
