@@ -7,6 +7,16 @@
 type RoleType = "super" | "admin" | "moderator" | "user";
 type ActionsType = 'view' | 'create' | 'update' | 'delete';
 
+type PostType = {
+    title: string;
+    slug: string; // id
+    content: string;
+    desc: string;
+    userId: UserType['id'];
+    createdAt: string;
+    updatedAt: string;
+}
+
 type UserType = {
     name: string;
     email: string;
@@ -21,7 +31,7 @@ type PermissionType = {
     role: RoleType;
     value: ConditionType | boolean;
     action: ActionsType | null;
-    resorce: 'users' | 'permissions' | 'todos' | string | null;
+    resorce: 'users' | 'permissions' | 'todos' | 'posts' | string | null;
 }
 
 
@@ -222,17 +232,14 @@ HEADERS {
 }
 
 BODY {
-    name: string;
-    email: string;
-    password: string;
+    role: RoleType;
+    value: ConditionType | boolean;
+    action: ActionsType | null;
+    resorce: string | null;
 }
 
 RESPONSE {
-    user: UserType
-    token: {
-        refresh: string
-        access: string
-    }
+    permission: PermissionType
 }
 
 STATUS CODE 
@@ -244,13 +251,17 @@ STATUS CODE
 
 #### GET ALL PERMISSION  
 
-get the permisstion from permissionly
+get all the permission from permissionly
 
 <mark style="padding: .2em .6em; background:teal; color: white;">Note only from admin url is allowed to req on this url</mark>
 
 ```sh
 METHOD [GET]
 URL '/'
+
+HEADERS {
+    Authorization: `Bearer <accessToken>`
+}
 
 RESPONSE {
     permissions: PermissionType[]
@@ -262,9 +273,64 @@ STATUS CODE
 401 -> ExpiredError/UnAuthenticatedError ('ExpiredError' | 'Token Required!' | 'Your account had been deleted!')
 ```
 
+#### UPDATE PERMISSION  
+
+update the permission to permissionly
+
+<mark style="padding: .2em .6em; background:teal; color: white;">Note only from admin url is allowed to req on this url</mark>
+
+```sh
+METHOD [PATCH]
+URL '/:id'
+
+HEADERS {
+    Authorization: `Bearer <accessToken>`
+}
+
+BODY {
+    role: RoleType;
+    value: ConditionType | boolean;
+    action: ActionsType | null;
+    resorce: string | null;
+}
+
+RESPONSE {
+    permission: PermissionType
+}
+
+STATUS CODE 
+200 -> success
+500 -> server Error
+401 -> ExpiredError/UnAuthenticatedError ('ExpiredError' | 'Token Required!' | 'Your account had been deleted!' | 'Invalid credentials provided!')
+```
+
+#### GET PERMISSION BY ID
+
+get the permission by id from permissionly
+
+<mark style="padding: .2em .6em; background:teal; color: white;">Note only from admin url is allowed to req on this url</mark>
+
+```sh
+METHOD [GET]
+URL '/:id'
+
+HEADERS {
+    Authorization: `Bearer <accessToken>`
+}
+
+RESPONSE {
+    permission: PermissionType | null # (if not found)
+}
+
+STATUS CODE 
+200 -> success
+500 -> server Error
+401 -> ExpiredError/UnAuthenticatedError ('ExpiredError' | 'Token Required!' | 'Your account had been deleted!' | 'Invalid credentials provided!')
+```
+
 #### GET PERMISSION  
 
-get the permisstion from permissionly
+get the permission from permissionly
 
 ```sh
 METHOD [GET]
@@ -279,5 +345,154 @@ STATUS CODE
 500 -> server Error
 401 -> ExpiredError/UnAuthenticatedError ('ExpiredError' | 'Token Required!' | 'Your account had been deleted!')
 400 -> ZodError/BadError ('Invalid credentials provided!')
+```
+
+#### DELETE PERMISSION  
+
+delete the permission
+
+<mark style="padding: .2em .6em; background:teal; color: white;">Note only from admin url is allowed to req on this url</mark>
+
+```sh
+METHOD [DELETE]
+URL '/:id'
+
+RESPONSE {
+    message: string
+}
+
+STATUS CODE 
+200 -> success
+500 -> server Error
+401 -> ExpiredError/UnAuthenticatedError ('ExpiredError' | 'Token Required!' | 'Your account had been deleted!')
+```
+
+## POST
+
+```sh
+BASE URL: '/post'
+```
+
+### ROUTES
+
+#### CREATE POST
+
+create your post
+
+```sh
+METHOD [POST]
+URL '/'
+
+HEADERS {
+    Authorization: `Bearer <accessToken>`
+}
+
+BODY {
+    title: string;
+    slug: string;
+    content: string;
+    desc: string;
+}
+
+RESPONSE {
+    post: PostType
+}
+
+STATUS CODE 
+201 -> created
+500 -> server Error
+401 -> ExpiredError/UnAuthenticatedError ('ExpiredError' | 'Token Required!' | 'Your account had been deleted!')
+400 -> ZodError/BadError ('Invalid credentials provided!')
+```
+
+#### GET ALL POST  
+
+get all the posts
+
+```sh
+METHOD [GET]
+URL '/'
+
+HEADERS {
+    Authorization: `Bearer <accessToken>`
+}
+
+RESPONSE {
+    posts: PermissionType[]
+}
+
+STATUS CODE 
+200 -> success
+500 -> server Error
+401 -> ExpiredError/UnAuthenticatedError ('ExpiredError' | 'Token Required!' | 'Your account had been deleted!')
+```
+
+#### GET POST BY SlUG
+
+get the post by slug
+
+```sh
+METHOD [GET]
+URL '/:id'
+
+HEADERS {
+    Authorization: `Bearer <accessToken>`
+}
+
+RESPONSE {
+    post: PostType | null # (if not found)
+}
+
+STATUS CODE 
+200 -> success
+500 -> server Error
+401 -> ExpiredError/UnAuthenticatedError ('ExpiredError' | 'Token Required!' | 'Your account had been deleted!' | 'Invalid credentials provided!')
+```
+
+#### UPDATE POST  
+
+update the post
+
+```sh
+METHOD [PATCH]
+URL '/:slug'
+
+HEADERS {
+    Authorization: `Bearer <accessToken>`
+}
+
+BODY {
+    title: string;
+    slug: string;
+    content: string;
+    desc: string;
+}
+
+RESPONSE {
+    post: PostType
+}
+
+STATUS CODE 
+200 -> success
+500 -> server Error
+401 -> ExpiredError/UnAuthenticatedError ('ExpiredError' | 'Token Required!' | 'Your account had been deleted!' | 'Invalid credentials provided!')
+```
+
+#### DELETE POST  
+
+delete the post
+
+```sh
+METHOD [DELETE]
+URL '/:slug'
+
+RESPONSE {
+    message: string
+}
+
+STATUS CODE 
+200 -> success
+500 -> server Error
+401 -> ExpiredError/UnAuthenticatedError ('ExpiredError' | 'Token Required!' | 'Your account had been deleted!')
 ```
 

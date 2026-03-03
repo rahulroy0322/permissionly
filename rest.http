@@ -1,0 +1,41 @@
+
+@base = http://localhost:8000/api/v1
+
+
+## auth
+
+### register
+
+POST {{base}}/auth/register
+content-type: application/json
+
+{
+    "name": "test",
+    "email": "test@test.com",
+    "password": "TEst@@1234"
+}
+
+### login
+
+POST {{base}}/auth/login
+content-type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "TEst@@1234"
+}
+
+
+### me
+
+GET {{base}}/auth/me
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI1Mjk0MDYsImV4cCI6MTc3MjUzMDMwNn0.60OHVnaTaJ4ceXC4nJ1tgv4Roi5w2U9OtVMv__DPMUA
+
+
+### token
+
+GET {{base}}/auth/token
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImlhdCI6MTc3MjUyNjA5NCwiZXhwIjoxNzczMTMwODk0fQ._EUwFkuH5atUuGUgMr7asCGq7LS7dE1ePr8NSTpNDos
+

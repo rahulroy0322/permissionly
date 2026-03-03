@@ -26,7 +26,7 @@ type LoginSchemaType = z.infer<typeof loginSchema>
 
 type UserType = Prettify<Omit<RegisterSchemaType, 'password'> & DefaultsType & {
 	role: RoleSchemaType
-	pass?: string
+	pass: string | null
 }>
 
 export type { RegisterSchemaType, LoginSchemaType, UserType }
