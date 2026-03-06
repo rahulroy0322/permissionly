@@ -21,6 +21,7 @@ const envSchema = z.object({
 		.optional()
 		.default('dev')
 		.describe('which env running?'),
+	ADMIN_URL: z.url(),
 	// DB
 	DB_HOST: z.string(),
 	DB_USER: z.string(),

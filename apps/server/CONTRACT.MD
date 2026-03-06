@@ -223,6 +223,8 @@ BASE URL: '/permission'
 
 create your permission to permissionly
 
+<mark style="padding: .2em .6em; background:teal; color: white;">Note only from admin url is allowed to req on this url</mark>
+
 ```sh
 METHOD [POST]
 URL '/'

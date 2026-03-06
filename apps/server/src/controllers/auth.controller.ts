@@ -141,8 +141,6 @@ const meController: RequestHandler = async (req, res) => {
 	})
 }
 
-// 1773130894 }, x: 1772528131548 }
-
 const refreshController: RequestHandler = async (req, res) => {
 	const _token = String(
 		req.headers.authorization || req.headers.token || ''

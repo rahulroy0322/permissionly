@@ -39,3 +39,38 @@ GET {{base}}/auth/token
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImlhdCI6MTc3MjUyNjA5NCwiZXhwIjoxNzczMTMwODk0fQ._EUwFkuH5atUuGUgMr7asCGq7LS7dE1ePr8NSTpNDos
 
+
+## permission
+
+### create
+
+POST {{base}}/permission
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI4MTE0NjQsImV4cCI6MTc3MjgxMjM2NH0.Yk_tPQePYOZ8cHTgNKvEeo5aOlZ13x6U3kJO9GGOd_4
+
+{
+    "role":"user",
+    "resorce": "user",
+    "value": true
+}
+
+# {
+#     "role":"user",
+#     "resorce": "user",
+#     "action":"create",
+#     "value":{
+#         "type" :"not",
+#         "leaf":{
+#             "type":"leaf",
+#             "ref": "user.role",
+#             "op":"eq",
+#             "value":"user"
+#         }
+#     }
+# }
+
+### all permission
+
+GET {{base}}/permission
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI4MTE0NjQsImV4cCI6MTc3MjgxMjM2NH0.Yk_tPQePYOZ8cHTgNKvEeo5aOlZ13x6U3kJO9GGOd_4

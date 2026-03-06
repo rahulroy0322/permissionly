@@ -1,6 +1,11 @@
 import type { RequestHandler } from 'express'
 import type { AuthenticateCallback } from 'passport'
-import { UnAuthenticatedError } from '../error/app.error'
+import ENV, { isDev } from '../config/env.config'
+import {
+	NotFoundError,
+	ServerError,
+	UnAuthenticatedError,
+} from '../error/app.error'
 import { auth } from '../lib/auth.lib'
 
 const checkAuth: RequestHandler = (req, res, next): RequestHandler =>
@@ -26,6 +31,20 @@ const authRequired: RequestHandler = async (req, _res, next) => {
 	next()
 }
 
+const isFromAdmin: RequestHandler = async (req, _res, next) => {
+	if (!req.user) {
+		throw new ServerError("some event dosn't handled properly! in middleware")
+	}
+
+	if (!isDev) {
+		if (ENV.ADMIN_URL !== req.headers.origin) {
+			throw new NotFoundError(`route not found : "${req.url}"!`)
+		}
+	}
+
+	next()
+}
+
 // const roleRequired = (roles: RoleSchemaType[]) => {
 //   return (async (req, _res, next) => {
 //     const user = req.user
@@ -42,4 +61,4 @@ const authRequired: RequestHandler = async (req, _res, next) => {
 //   }) satisfies RequestHandler
 // }
 
-export { checkAuth, authRequired }
+export { checkAuth, authRequired, isFromAdmin }

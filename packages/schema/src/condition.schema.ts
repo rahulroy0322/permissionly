@@ -1,9 +1,10 @@
 import { z } from "zod"
 import type { UserType } from "./auth.schema"
+import type { TodoType } from "./todo.schema"
 
 
 // * here 
-type AttrsType = {}
+type AttrsType = TodoType
 
 const operatorSchema = z.enum([
     "eq",
@@ -60,8 +61,8 @@ const conditionSchema: z.ZodType<LeafType | NotType | AndType | OrType> = z.lazy
         type: z.literal("or"),
         leafs: z.array(conditionSchema),
     }),
-],{
-    error:'Please provide a valid condition'
+], {
+    error: 'Please provide a valid condition'
 }))
 
 

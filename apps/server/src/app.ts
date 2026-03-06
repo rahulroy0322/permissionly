@@ -1,6 +1,10 @@
 // import cors from 'cors'
+
+import cors from 'cors'
 import express, { type Express, json, type Response, urlencoded } from 'express'
 import type { UserType } from 'schema/auth'
+import type { PermissionSchemaType } from 'schema/permission'
+import ENV from './config/env.config'
 import { auth } from './lib/auth.lib'
 import { errorMiddleware } from './middlewares/error.middleware'
 import { notFoundMiddleware } from './middlewares/not-found.middleware'
@@ -8,11 +12,11 @@ import apiRouter from './routes'
 
 const app: Express = express()
 
-// app.use(
-//   cors({
-//     origin: ENV.FRONTEND_URLS,
-//   })
-// )
+app.use(
+	cors({
+		origin: ENV.FRONTEND_URLS,
+	})
+)
 app.use(json())
 app.use(
 	urlencoded({
@@ -40,6 +44,7 @@ type ResourcesType = {
 		refresh?: string
 		access: string
 	}
+	permission: PermissionSchemaType
 }
 
 declare global {
@@ -57,9 +62,15 @@ declare global {
 }
 
 type FnType = <Resorce extends keyof ResourcesType>(
-	data: Record<Resorce, ResourcesType[Resorce]> & {
-		[key: string]: unknown
-	}
+	// data: Record<Resorce, ResourcesType[Resorce]> & {
+	// 	[key: string]: unknown
+	// }
+	data: Partial<
+		| (Record<Resorce, ResourcesType[Resorce]> & {
+				[key: string]: unknown
+		  })
+		| Record<`${Resorce}s`, []>
+	>
 ) => Response
 
 type ErrFnType = (data: { status: number; error: Error }) => Response
