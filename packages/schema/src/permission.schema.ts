@@ -31,8 +31,23 @@ const permissionSchema = z.union([
   }),
 ]);
 
+const permissionUpdateSchema =
+  z.object({
+    role: roleSchema.optional().nullable().default(null),
+    resorce: resorcessSchema.optional().nullable().default(null),
+    action: actionSchema.optional().nullable().default(null),
+    value: z
+      .union([conditionSchema, z.boolean()], {
+        inclusive: true,
+        error: "value must be boolean or condition type",
+      }).optional().nullable().default(null)
+  })
+
+
 type PermissionSchemaType = z.infer<typeof permissionSchema>;
 
 export type { PermissionSchemaType };
 
-export { permissionSchema };
+export { permissionSchema,
+  permissionUpdateSchema
+ };

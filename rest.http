@@ -1,6 +1,7 @@
 
 @base = http://localhost:8000/api/v1
-
+@access = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI4MTYyOTIsImV4cCI6MTc3MjgxNzE5Mn0.JjXLS8fK21s4nJUnPODKq9xitDbCQWUdcE-1wj7CaMc
+@refresh = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImlhdCI6MTc3MjUyNjA5NCwiZXhwIjoxNzczMTMwODk0fQ._EUwFkuH5atUuGUgMr7asCGq7LS7dE1ePr8NSTpNDos
 
 ## auth
 
@@ -30,14 +31,14 @@ content-type: application/json
 
 GET {{base}}/auth/me
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI1Mjk0MDYsImV4cCI6MTc3MjUzMDMwNn0.60OHVnaTaJ4ceXC4nJ1tgv4Roi5w2U9OtVMv__DPMUA
+Authorization: Bearer {{access}}
 
 
 ### token
 
 GET {{base}}/auth/token
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImlhdCI6MTc3MjUyNjA5NCwiZXhwIjoxNzczMTMwODk0fQ._EUwFkuH5atUuGUgMr7asCGq7LS7dE1ePr8NSTpNDos
+Authorization: Bearer {{refresh}}
 
 
 ## permission
@@ -46,7 +47,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiL
 
 POST {{base}}/permission
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI4MTE0NjQsImV4cCI6MTc3MjgxMjM2NH0.Yk_tPQePYOZ8cHTgNKvEeo5aOlZ13x6U3kJO9GGOd_4
+Authorization: Bearer {{access}}
 
 {
     "role":"user",
@@ -73,4 +74,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiL
 
 GET {{base}}/permission
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI4MTE0NjQsImV4cCI6MTc3MjgxMjM2NH0.Yk_tPQePYOZ8cHTgNKvEeo5aOlZ13x6U3kJO9GGOd_4
+Authorization: Bearer {{access}}
+
+
+### permission by id
+
+GET {{base}}/permission/11e4b49f-04a6-4923-9327-e228d4ab77b2
+content-type: application/json
+Authorization: Bearer {{access}}
+
+
+### update permission by id
+
+PATCH {{base}}/permission/11e4b49f-04a6-4923-9327-e228d4ab77b2
+content-type: application/json
+Authorization: Bearer {{access}}
+
+{
+    "value": false
+}

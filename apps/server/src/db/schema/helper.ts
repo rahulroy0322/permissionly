@@ -12,7 +12,7 @@ const defaults = {
 	})
 		.defaultNow()
 		.notNull()
-		.$onUpdate(() => new Date().toString()),
+		.$onUpdate(() => new Date().toJSON()),
 }
 
 export { defaults }

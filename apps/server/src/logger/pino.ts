@@ -31,7 +31,7 @@ const logger = pino({
 		: {}),
 	base: {
 		processId: process.pid,
-		appName: `Blog Server`,
+		appName: `permissionly Server`,
 	},
 	redact: {
 		paths: ['password', 'passwd', 'pass'],

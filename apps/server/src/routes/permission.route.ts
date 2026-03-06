@@ -2,6 +2,8 @@ import { Router } from 'express'
 import {
 	createPermissionController,
 	getAllPermissionsController,
+	getPermissionByIDController,
+	updatePermissionByIDController,
 } from '../controllers/permission.controller'
 import {
 	authRequired,
@@ -11,18 +13,17 @@ import {
 
 const permissionRouter = Router()
 
+const withAdminHostOnly = [checkAuth, authRequired, isFromAdmin]
+
 permissionRouter
 	.route('/')
-	.get(checkAuth, authRequired, isFromAdmin, getAllPermissionsController)
+	.get(withAdminHostOnly, getAllPermissionsController)
 
-	.post(checkAuth, authRequired, isFromAdmin, createPermissionController)
+	.post(withAdminHostOnly, createPermissionController)
 
-// permissionRouter.post('/login', loginController)
-
-// permissionRouter.get('/me', checkAuth, authRequired, meController)
-
-// permissionRouter.get('/profile', checkAuth, authRequired, meController)
-
-// permissionRouter.get('/token', refreshController)
+permissionRouter
+	.route('/:id')
+	.get(withAdminHostOnly, getPermissionByIDController)
+	.patch(withAdminHostOnly, updatePermissionByIDController)
 
 export default permissionRouter

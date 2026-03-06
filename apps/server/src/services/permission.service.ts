@@ -1,9 +1,10 @@
-import { and, eq, isNull, type SQL } from 'drizzle-orm'
+import { and, eq, isNull, type SQL, type TableConfig } from 'drizzle-orm'
+import type { PgTable } from 'drizzle-orm/pg-core'
 import type { PermissionSchemaType } from 'schema/permission'
 import { db } from '../db/main'
 import { Permission } from '../db/schema/permission'
 
-const checkNull = <T extends typeof Permission>({
+const checkNull = <T extends PgTable<TableConfig>>({
 	data,
 	key,
 	Table,
@@ -35,13 +36,14 @@ const _getPermissions = ({
 	db.query.Permission.findMany({
 		where: filter,
 		columns: {
+			id: true,
 			role: true,
 			value: true,
 			action: true,
 			resorce: true,
 		},
 		limit,
-	})
+	}) as Promise<PermissionSchemaType[]>
 
 const getPermission = ({
 	role,
@@ -78,16 +80,28 @@ const createPermission = (
 // todo
 const getPermissions = () => _getPermissions({})
 
-// const getUserByID = (id: string) =>
-// 	db.query.User.findFirst({
-// 		where: eq(User.id, id),
-// 		columns: {
-// 			email: true,
-// 			pass: true,
-// 			id: true,
-// 			role: true,
-// 			name: true,
-// 		},
-// 	})
+const getPermissionByID = (id: string) =>
+	_getPermissions({
+		filter: eq(Permission.id, id),
+		limit: 1,
+	})
 
-export { getPermission, createPermission, getPermissions }
+const updatePermissionByID = (
+	id: string,
+	data: Partial<
+		Pick<PermissionSchemaType, 'action' | 'resorce' | 'role' | 'value'>
+	>
+) =>
+	db
+		.update(Permission)
+		.set(data as typeof Permission.$inferInsert)
+		.where(eq(Permission.id, id))
+		.returning() as Promise<PermissionSchemaType[]>
+
+export {
+	getPermission,
+	createPermission,
+	getPermissions,
+	getPermissionByID,
+	updatePermissionByID,
+}
