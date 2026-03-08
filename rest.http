@@ -144,3 +144,12 @@ Authorization: Bearer {{access}}
     "title":"This is updated title"
 }
 
+### detete by slug
+
+DELETE {{base}}/post/this-is-slug
+content-type: application/json
+Authorization: Bearer {{access}}
+
+{
+    "title":"This is updated title"
+}

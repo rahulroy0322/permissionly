@@ -1,9 +1,10 @@
 import { Router } from 'express'
 import {
 	createPostController,
+	deletePostBySLUGController,
 	getAllPostsController,
 	getPostBySLUGController,
-	updatePermissionBySLUGController,
+	updatePostBySLUGController,
 } from '../controllers/post.controller'
 import { authRequired, checkAuth } from '../middlewares/auth.middleware'
 
@@ -22,7 +23,7 @@ postRouter
 postRouter
 	.route('/:slug')
 	.get(getPostBySLUGController)
-	.patch(withPermission, updatePermissionBySLUGController)
-// 	.delete(withAdminHostOnly, deletePermissionByIDController)
+	.patch(withPermission, updatePostBySLUGController)
+	.delete(withPermission, deletePostBySLUGController)
 
 export default postRouter

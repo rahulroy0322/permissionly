@@ -116,9 +116,16 @@ const updatePostBySLUG = (slug: string, data: Partial<PostSchemaType>) =>
 		PostSchemaType[]
 	>
 
-// const deletePermissionByID = (id: string) =>
-// 	db.delete(Permission).where(eq(Permission.id, id)).returning() as Promise<
-// 		PermissionSchemaType[]
-// 	>
+const deletePostBySLUG = (slug: string) =>
+	db.delete(Post).where(eq(Post.slug, slug)).returning() as Promise<
+		PostSchemaType[]
+	>
 
-export { getPost, createPost, getPosts, getPostBySLUG, updatePostBySLUG }
+export {
+	getPost,
+	createPost,
+	getPosts,
+	getPostBySLUG,
+	updatePostBySLUG,
+	deletePostBySLUG,
+}

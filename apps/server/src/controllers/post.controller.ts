@@ -1,8 +1,14 @@
 import type { RequestHandler } from 'express'
 import { type PostSchemaType, postSchema, postUpdateSchema } from 'schema/post'
-import { BadError, ServerError, ZodError } from '../error/app.error'
+import {
+	BadError,
+	ForbidenError,
+	ServerError,
+	ZodError,
+} from '../error/app.error'
 import {
 	createPost,
+	deletePostBySLUG,
 	getPost,
 	getPostBySLUG,
 	getPosts,
@@ -75,7 +81,7 @@ const getPostBySLUGController: RequestHandler<{
 	})
 }
 
-const updatePermissionBySLUGController: RequestHandler<{
+const updatePostBySLUGController: RequestHandler<{
 	slug: string
 }> = async (req, res) => {
 	if (!req.user) {
@@ -110,29 +116,30 @@ const updatePermissionBySLUGController: RequestHandler<{
 	})
 }
 
-// const deletePermissionByIDController: RequestHandler<{
-// 	id: string
-// }> = async (req, res) => {
-// 	if (!req.user) {
-// 		throw new ServerError("some event dosn't handled properly!")
-// 	}
+const deletePostBySLUGController: RequestHandler<{
+	slug: string
+}> = async (req, res) => {
+	if (!req.user) {
+		throw new ServerError("some event dosn't handled properly!")
+	}
 
-// 	const { id } = req.params
+	const { slug } = req.params
 
-// 	const [permission = null] = await deletePermissionByID(id)
+	const [post = null] = await deletePostBySLUG(slug)
 
-// 	if (!permission) {
-// 		throw new ForbidenError()
-// 	}
+	if (!post) {
+		throw new ForbidenError()
+	}
 
-// 	res.ok({
-// 		message: 'permission deleted successfully',
-// 	})
-// }
+	res.ok({
+		message: 'post deleted successfully',
+	})
+}
 
 export {
 	createPostController,
 	getAllPostsController,
 	getPostBySLUGController,
-	updatePermissionBySLUGController,
+	updatePostBySLUGController,
+	deletePostBySLUGController,
 }
