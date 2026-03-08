@@ -9,12 +9,14 @@ const _getPosts = ({
 	withContent = false,
 	withAuthor = false,
 	withTime = false,
+	withPosts = false,
 }: {
 	filter?: SQL<unknown>
 	limit?: number
 	withContent?: boolean
 	withAuthor?: boolean
 	withTime?: boolean
+	withPosts?: boolean
 }) =>
 	db.query.Post.findMany({
 		where: filter,
@@ -30,17 +32,33 @@ const _getPosts = ({
 				updatedAt: true,
 			}),
 		},
-		...(withAuthor && {
-			with: {
-				author: {
-					columns: {
-						id: true,
-						name: true,
-						role: true,
+
+		...(withPosts
+			? {
+					with: {
+						author: {
+							columns: {
+								id: true,
+								name: true,
+							},
+							with: {
+								posts: true,
+							},
+						},
 					},
-				},
-			},
-		}),
+				}
+			: withAuthor
+				? {
+						with: {
+							author: {
+								columns: {
+									id: true,
+									name: true,
+								},
+							},
+						},
+					}
+				: {}),
 		limit,
 	}) as unknown as Promise<PostSchemaType[]>
 
@@ -52,7 +70,7 @@ const getPost = ({
 	withTime,
 }: Pick<
 	Parameters<typeof _getPosts>[0],
-	'withAuthor' | 'withContent' | 'withTime'
+	'withAuthor' | 'withContent' | 'withTime' | 'withPosts'
 > &
 	Pick<PostSchemaType, 'slug' | 'title'>) =>
 	_getPosts({
@@ -73,32 +91,34 @@ const getPosts = (
 	props: Partial<
 		Pick<
 			Parameters<typeof _getPosts>[0],
-			'withAuthor' | 'withContent' | 'withTime' | 'limit'
+			'withAuthor' | 'withContent' | 'withTime' | 'withPosts' | 'limit'
 		>
 	>
 ) => _getPosts(props)
 
-// const getPermissionByID = (id: string) =>
-// 	_getPermissions({
-// 		filter: eq(Permission.id, id),
-// 		limit: 1,
-// 	})
+const getPostBySLUG = (
+	slug: string,
+	props: Partial<
+		Pick<
+			Parameters<typeof _getPosts>[0],
+			'withAuthor' | 'withContent' | 'withTime' | 'withPosts'
+		>
+	>
+) =>
+	_getPosts({
+		...props,
+		filter: eq(Post.slug, slug),
+		limit: 1,
+	})
 
-// const updatePermissionByID = (
-// 	id: string,
-// 	data: Partial<
-// 		Pick<PermissionSchemaType, 'action' | 'resorce' | 'role' | 'value'>
-// 	>
-// ) =>
-// 	db
-// 		.update(Permission)
-// 		.set(data as typeof Permission.$inferInsert)
-// 		.where(eq(Permission.id, id))
-// 		.returning() as Promise<PermissionSchemaType[]>
+const updatePostBySLUG = (slug: string, data: Partial<PostSchemaType>) =>
+	db.update(Post).set(data).where(eq(Post.slug, slug)).returning() as Promise<
+		PostSchemaType[]
+	>
 
 // const deletePermissionByID = (id: string) =>
 // 	db.delete(Permission).where(eq(Permission.id, id)).returning() as Promise<
 // 		PermissionSchemaType[]
 // 	>
 
-export { getPost, createPost, getPosts }
+export { getPost, createPost, getPosts, getPostBySLUG, updatePostBySLUG }

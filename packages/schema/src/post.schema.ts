@@ -8,10 +8,13 @@ const postSchema = z.object({
     .max(100, "desc should not more then 100"),
 })
 
+const postUpdateSchema = postSchema.partial()
+
 type PostSchemaType = z.infer<typeof postSchema>;
 
 export type { PostSchemaType };
 
 export {
-  postSchema
+  postSchema,
+  postUpdateSchema
 };

@@ -19,11 +19,7 @@ import {
 	getPermissions,
 	updatePermissionByID,
 } from '../services/permission.service'
-
-const isEmpty = <T extends Record<string, unknown>>(
-	data: T,
-	keys: (keyof T)[]
-) => keys.every((key) => data[key] == null)
+import { isEmpty } from '../utils/empty'
 
 const createPermissionController: RequestHandler = async (req, res) => {
 	if (!req.user) {

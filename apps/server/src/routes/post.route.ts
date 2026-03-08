@@ -2,6 +2,8 @@ import { Router } from 'express'
 import {
 	createPostController,
 	getAllPostsController,
+	getPostBySLUGController,
+	updatePermissionBySLUGController,
 } from '../controllers/post.controller'
 import { authRequired, checkAuth } from '../middlewares/auth.middleware'
 
@@ -14,13 +16,13 @@ const withPermission = [checkAuth, authRequired]
 
 postRouter
 	.route('/')
-	.get(withPermission, getAllPostsController)
+	.get(getAllPostsController)
 	.post(withPermission, createPostController)
 
-// postRouter
-// 	.route('/:id')
-// 	.get(withAdminHostOnly, getPermissionByIDController)
-// 	.patch(withAdminHostOnly, updatePermissionByIDController)
+postRouter
+	.route('/:slug')
+	.get(getPostBySLUGController)
+	.patch(withPermission, updatePermissionBySLUGController)
 // 	.delete(withAdminHostOnly, deletePermissionByIDController)
 
 export default postRouter

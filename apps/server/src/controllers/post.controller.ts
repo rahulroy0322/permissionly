@@ -1,7 +1,14 @@
 import type { RequestHandler } from 'express'
-import { postSchema } from 'schema/post'
+import { type PostSchemaType, postSchema, postUpdateSchema } from 'schema/post'
 import { BadError, ServerError, ZodError } from '../error/app.error'
-import { createPost, getPost, getPosts } from '../services/post.service'
+import {
+	createPost,
+	getPost,
+	getPostBySLUG,
+	getPosts,
+	updatePostBySLUG,
+} from '../services/post.service'
+import { isEmpty } from '../utils/empty'
 
 const createPostController: RequestHandler = async (req, res) => {
 	if (!req.user) {
@@ -41,11 +48,7 @@ const createPostController: RequestHandler = async (req, res) => {
 	})
 }
 
-const getAllPostsController: RequestHandler = async (req, res) => {
-	if (!req.user) {
-		throw new ServerError("some event dosn't handled properly!")
-	}
-
+const getAllPostsController: RequestHandler = async (_req, res) => {
 	const posts = await getPosts({
 		withAuthor: true,
 		withTime: true,
@@ -56,74 +59,56 @@ const getAllPostsController: RequestHandler = async (req, res) => {
 	})
 }
 
-// const getPermissionByIDController: RequestHandler<{
-// 	id: string
-// }> = async (req, res) => {
-// 	if (!req.user) {
-// 		throw new ServerError("some event dosn't handled properly!")
-// 	}
+const getPostBySLUGController: RequestHandler<{
+	slug: string
+}> = async (req, res) => {
+	const { slug } = req.params
 
-// 	const { id } = req.params
+	const [post = null] = await getPostBySLUG(slug, {
+		withPosts: true,
+		withContent: true,
+		withTime: true,
+	})
 
-// 	const [permission = null] = await getPermissionByID(id)
+	res.ok({
+		post: post as PostSchemaType,
+	})
+}
 
-// 	res.ok({
-// 		permission: permission as PermissionSchemaType,
-// 	})
-// }
+const updatePermissionBySLUGController: RequestHandler<{
+	slug: string
+}> = async (req, res) => {
+	if (!req.user) {
+		throw new ServerError("some event dosn't handled properly!")
+	}
 
-// const getPermissionController: RequestHandler = async (req, res) => {
-// 	const { success, data, error } = queryPermissionSchema.safeParse(
-// 		req.query || {}
-// 	)
+	const { success, data, error } = postUpdateSchema.safeParse(req.body || {})
 
-// 	if (!success) {
-// 		throw new ZodError(error)
-// 	}
+	if (!success) {
+		throw new ZodError(error)
+	}
 
-// 	const [permission = null] = await getPermission(data)
+	if (isEmpty(data, ['content', 'desc', 'title', 'slug'])) {
+		throw new BadError('Invalid credentials provided!')
+	}
 
-// 	res.ok({
-// 		permission: permission as PermissionSchemaType,
-// 	})
-// }
+	const { slug } = req.params
 
-// const updatePermissionByIDController: RequestHandler<{
-// 	id: string
-// }> = async (req, res) => {
-// 	if (!req.user) {
-// 		throw new ServerError("some event dosn't handled properly!")
-// 	}
+	const dataAfterRemoved = Object.entries(data).reduce((acc, [key, value]) => {
+		if (value != null) {
+			// @ts-expect-error
+			acc[key] = value
+		}
 
-// 	const { success, data, error } = permissionUpdateSchema.safeParse(
-// 		req.body || {}
-// 	)
+		return acc
+	}, {} as PostSchemaType)
 
-// 	if (!success) {
-// 		throw new ZodError(error)
-// 	}
+	const [post = null] = await updatePostBySLUG(slug, dataAfterRemoved)
 
-// 	if (isEmpty(data, ['action', 'resorce', 'role', 'value'])) {
-// 		throw new BadError('Invalid credentials provided!')
-// 	}
-
-// 	const { id } = req.params
-
-// 	const dataAfterRemoved = Object.entries(data).reduce((acc, [key, value]) => {
-// 		if (value != null) {
-// 			// @ts-expect-error
-// 			acc[key] = value
-// 		}
-
-// 		return acc
-// 	}, {} as PermissionSchemaType)
-
-// 	const [permission = null] = await updatePermissionByID(id, dataAfterRemoved)
-
-// 	res.ok({
-// 		permission: permission as PermissionSchemaType,
-// 	})
-// }
+	res.ok({
+		post: post as PostSchemaType,
+	})
+}
 
 // const deletePermissionByIDController: RequestHandler<{
 // 	id: string
@@ -145,4 +130,9 @@ const getAllPostsController: RequestHandler = async (req, res) => {
 // 	})
 // }
 
-export { createPostController, getAllPostsController }
+export {
+	createPostController,
+	getAllPostsController,
+	getPostBySLUGController,
+	updatePermissionBySLUGController,
+}
