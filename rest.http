@@ -1,6 +1,6 @@
 
 @base = http://localhost:8000/api/v1
-@access = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI4MTYyOTIsImV4cCI6MTc3MjgxNzE5Mn0.JjXLS8fK21s4nJUnPODKq9xitDbCQWUdcE-1wj7CaMc
+@access = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI5NDY1OTMsImV4cCI6MTc3Mjk0NzQ5M30.37AVp_AIL8mJPBb1C6eD42KM4B4ZLkat2m5rXLKPFog
 @refresh = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImlhdCI6MTc3MjUyNjA5NCwiZXhwIjoxNzczMTMwODk0fQ._EUwFkuH5atUuGUgMr7asCGq7LS7dE1ePr8NSTpNDos
 
 ## auth
@@ -93,3 +93,9 @@ Authorization: Bearer {{access}}
 {
     "value": false
 }
+
+
+### permission
+
+GET {{base}}/permission/permission?role=user&resorce=user&action=create
+content-type: application/json

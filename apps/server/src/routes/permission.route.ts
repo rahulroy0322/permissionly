@@ -3,6 +3,7 @@ import {
 	createPermissionController,
 	getAllPermissionsController,
 	getPermissionByIDController,
+	getPermissionController,
 	updatePermissionByIDController,
 } from '../controllers/permission.controller'
 import {
@@ -14,6 +15,8 @@ import {
 const permissionRouter = Router()
 
 const withAdminHostOnly = [checkAuth, authRequired, isFromAdmin]
+
+permissionRouter.get('/permission', getPermissionController)
 
 permissionRouter
 	.route('/')

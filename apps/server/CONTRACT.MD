@@ -6,6 +6,7 @@
 ```ts
 type RoleType = "super" | "admin" | "moderator" | "user";
 type ActionsType = 'view' | 'create' | 'update' | 'delete';
+type ResorceType =  'users' | 'todos' | 'posts' | string;
 
 type PostType = {
     title: string;
@@ -31,7 +32,7 @@ type PermissionType = {
     role: RoleType;
     value: ConditionType | boolean;
     action: ActionsType | null;
-    resorce: 'users' | 'permissions' | 'todos' | 'posts' | string | null;
+    resorce: ResorceType;
 }
 
 
@@ -337,6 +338,12 @@ get the permission from permissionly
 ```sh
 METHOD [GET]
 URL '/permission'
+
+QUERY {
+    role: RoleType
+    action: ActionsType | null
+    resorce: ResorceType | null
+}
 
 RESPONSE {
     permission: PermissionType | null # (if not found)

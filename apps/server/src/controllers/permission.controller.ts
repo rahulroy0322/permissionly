@@ -3,13 +3,9 @@ import {
 	type PermissionSchemaType,
 	permissionSchema,
 	permissionUpdateSchema,
+	queryPermissionSchema,
 } from 'schema/permission'
-import {
-	BadError,
-	NotFoundError,
-	ServerError,
-	ZodError,
-} from '../error/app.error'
+import { BadError, ServerError, ZodError } from '../error/app.error'
 import {
 	createPermission,
 	getPermission,
@@ -22,10 +18,6 @@ const isEmpty = <T extends Record<string, unknown>>(
 	data: T,
 	keys: (keyof T)[]
 ) => keys.every((key) => data[key] == null)
-
-// 	if (!data.action && !data.resorce && !data.role && !data.role) {
-// 	throw new BadError('Invalid credentials provided!')
-// }
 
 const createPermissionController: RequestHandler = async (req, res) => {
 	if (!req.user) {
@@ -90,9 +82,9 @@ const updatePermissionByIDController: RequestHandler<{
 		throw new ServerError("some event dosn't handled properly!")
 	}
 
-	const { success, data, error } = permissionUpdateSchema
-		.exactOptional()
-		.safeParse(req.body || {})
+	const { success, data, error } = permissionUpdateSchema.safeParse(
+		req.body || {}
+	)
 
 	if (!success) {
 		throw new ZodError(error)
@@ -115,18 +107,24 @@ const updatePermissionByIDController: RequestHandler<{
 
 	const [permission = null] = await updatePermissionByID(id, dataAfterRemoved)
 
-	if (!permission) {
-		throw new NotFoundError(undefined, {
-			context: 'updatePermissionByIDController',
-			user: req.user,
-			id,
-			permission,
-		})
+	res.ok({
+		permission: permission as PermissionSchemaType,
+	})
+}
+
+const getPermissionController: RequestHandler = async (req, res) => {
+	const { success, data, error } = queryPermissionSchema.safeParse(
+		req.query || {}
+	)
+
+	if (!success) {
+		throw new ZodError(error)
 	}
 
-	// todo
+	const [permission = null] = await getPermission(data)
+
 	res.ok({
-		permission,
+		permission: permission as PermissionSchemaType,
 	})
 }
 
@@ -135,4 +133,5 @@ export {
 	getAllPermissionsController,
 	getPermissionByIDController,
 	updatePermissionByIDController,
+	getPermissionController,
 }
