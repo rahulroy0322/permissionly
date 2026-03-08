@@ -4,6 +4,7 @@ import cors from 'cors'
 import express, { type Express, json, type Response, urlencoded } from 'express'
 import type { UserType } from 'schema/auth'
 import type { PermissionSchemaType } from 'schema/permission'
+import type { PostSchemaType } from 'schema/post'
 import ENV from './config/env.config'
 import { auth } from './lib/auth.lib'
 import { errorMiddleware } from './middlewares/error.middleware'
@@ -44,6 +45,7 @@ type ResourcesType = {
 		refresh?: string
 		access: string
 	}
+	post: PostSchemaType
 	permission: PermissionSchemaType
 	message: string
 }

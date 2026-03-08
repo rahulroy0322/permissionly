@@ -428,7 +428,7 @@ HEADERS {
 }
 
 RESPONSE {
-    posts: PermissionType[]
+    posts: PostType[]
 }
 
 STATUS CODE 

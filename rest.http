@@ -1,6 +1,6 @@
 
 @base = http://localhost:8000/api/v1
-@access = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI5NDc1MjEsImV4cCI6MTc3Mjk0ODQyMX0.TP9WQ_EhrNld48a1rFQy8oOJ7MrSW9zbL6QmnQ8ENlE
+@access = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI5NTIwMzIsImV4cCI6MTc3Mjk1MjkzMn0._My8Fr04fb66G_rW5tFYDPVG_BWdc8fwYKve2WTmxqg
 @refresh = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImlhdCI6MTc3MjUyNjA5NCwiZXhwIjoxNzczMTMwODk0fQ._EUwFkuH5atUuGUgMr7asCGq7LS7dE1ePr8NSTpNDos
 
 ## auth
@@ -107,3 +107,23 @@ content-type: application/json
 Authorization: Bearer {{access}}
 
 
+## post
+
+### create
+
+POST {{base}}/post
+content-type: application/json
+Authorization: Bearer {{access}}
+
+{
+    "title":"This is title",
+    "slug": "this is slug",
+    "content": "this is content",
+    "desc": "this is desc"
+}
+
+### get all
+
+GET {{base}}/post
+content-type: application/json
+Authorization: Bearer {{access}}

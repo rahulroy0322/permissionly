@@ -1,7 +1,6 @@
 import { timestamp, uuid } from 'drizzle-orm/pg-core'
 
-const defaults = {
-	id: uuid('id').primaryKey().defaultRandom(),
+const times = {
 	createdAt: timestamp('created_at', {
 		mode: 'string',
 	})
@@ -15,4 +14,9 @@ const defaults = {
 		.$onUpdate(() => new Date().toJSON()),
 }
 
-export { defaults }
+const defaults = {
+	id: uuid('id').primaryKey().defaultRandom(),
+	...times,
+}
+
+export { defaults, times }
