@@ -1,6 +1,6 @@
 
 @base = http://localhost:8000/api/v1
-@access = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI5NDY1OTMsImV4cCI6MTc3Mjk0NzQ5M30.37AVp_AIL8mJPBb1C6eD42KM4B4ZLkat2m5rXLKPFog
+@access = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI5NDc1MjEsImV4cCI6MTc3Mjk0ODQyMX0.TP9WQ_EhrNld48a1rFQy8oOJ7MrSW9zbL6QmnQ8ENlE
 @refresh = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImlhdCI6MTc3MjUyNjA5NCwiZXhwIjoxNzczMTMwODk0fQ._EUwFkuH5atUuGUgMr7asCGq7LS7dE1ePr8NSTpNDos
 
 ## auth
@@ -99,3 +99,11 @@ Authorization: Bearer {{access}}
 
 GET {{base}}/permission/permission?role=user&resorce=user&action=create
 content-type: application/json
+
+### DELETE permission by id
+
+DELETE {{base}}/permission/73106606-095c-4c81-bc92-56de77e6249c
+content-type: application/json
+Authorization: Bearer {{access}}
+
+

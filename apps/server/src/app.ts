@@ -45,6 +45,7 @@ type ResourcesType = {
 		access: string
 	}
 	permission: PermissionSchemaType
+	message: string
 }
 
 declare global {

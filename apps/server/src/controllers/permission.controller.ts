@@ -5,9 +5,15 @@ import {
 	permissionUpdateSchema,
 	queryPermissionSchema,
 } from 'schema/permission'
-import { BadError, ServerError, ZodError } from '../error/app.error'
+import {
+	BadError,
+	ForbidenError,
+	ServerError,
+	ZodError,
+} from '../error/app.error'
 import {
 	createPermission,
+	deletePermissionByID,
 	getPermission,
 	getPermissionByID,
 	getPermissions,
@@ -75,6 +81,22 @@ const getPermissionByIDController: RequestHandler<{
 	})
 }
 
+const getPermissionController: RequestHandler = async (req, res) => {
+	const { success, data, error } = queryPermissionSchema.safeParse(
+		req.query || {}
+	)
+
+	if (!success) {
+		throw new ZodError(error)
+	}
+
+	const [permission = null] = await getPermission(data)
+
+	res.ok({
+		permission: permission as PermissionSchemaType,
+	})
+}
+
 const updatePermissionByIDController: RequestHandler<{
 	id: string
 }> = async (req, res) => {
@@ -112,19 +134,23 @@ const updatePermissionByIDController: RequestHandler<{
 	})
 }
 
-const getPermissionController: RequestHandler = async (req, res) => {
-	const { success, data, error } = queryPermissionSchema.safeParse(
-		req.query || {}
-	)
-
-	if (!success) {
-		throw new ZodError(error)
+const deletePermissionByIDController: RequestHandler<{
+	id: string
+}> = async (req, res) => {
+	if (!req.user) {
+		throw new ServerError("some event dosn't handled properly!")
 	}
 
-	const [permission = null] = await getPermission(data)
+	const { id } = req.params
+
+	const [permission = null] = await deletePermissionByID(id)
+
+	if (!permission) {
+		throw new ForbidenError()
+	}
 
 	res.ok({
-		permission: permission as PermissionSchemaType,
+		message: 'permission deleted successfully',
 	})
 }
 
@@ -134,4 +160,5 @@ export {
 	getPermissionByIDController,
 	updatePermissionByIDController,
 	getPermissionController,
+	deletePermissionByIDController,
 }

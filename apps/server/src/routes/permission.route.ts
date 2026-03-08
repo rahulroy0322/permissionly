@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import {
 	createPermissionController,
+	deletePermissionByIDController,
 	getAllPermissionsController,
 	getPermissionByIDController,
 	getPermissionController,
@@ -21,12 +22,12 @@ permissionRouter.get('/permission', getPermissionController)
 permissionRouter
 	.route('/')
 	.get(withAdminHostOnly, getAllPermissionsController)
-
 	.post(withAdminHostOnly, createPermissionController)
 
 permissionRouter
 	.route('/:id')
 	.get(withAdminHostOnly, getPermissionByIDController)
 	.patch(withAdminHostOnly, updatePermissionByIDController)
+	.delete(withAdminHostOnly, deletePermissionByIDController)
 
 export default permissionRouter

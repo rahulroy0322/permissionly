@@ -374,6 +374,7 @@ STATUS CODE
 200 -> success
 500 -> server Error
 401 -> ExpiredError/UnAuthenticatedError ('ExpiredError' | 'Token Required!' | 'Your account had been deleted!')
+403 -> ForbidenError("You Don't Sufficient permition")
 ```
 
 ## POST

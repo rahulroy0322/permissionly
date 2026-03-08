@@ -98,10 +98,16 @@ const updatePermissionByID = (
 		.where(eq(Permission.id, id))
 		.returning() as Promise<PermissionSchemaType[]>
 
+const deletePermissionByID = (id: string) =>
+	db.delete(Permission).where(eq(Permission.id, id)).returning() as Promise<
+		PermissionSchemaType[]
+	>
+
 export {
 	getPermission,
 	createPermission,
 	getPermissions,
 	getPermissionByID,
 	updatePermissionByID,
+	deletePermissionByID,
 }
