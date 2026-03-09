@@ -9,8 +9,11 @@
     "module": "ESNext",
     "baseUrl": ".",
     "paths": {
+      "#/*": [
+        "./src/components/app/*.tsx"
+      ],
       "@/*": [
-        "./src/*"
+        "../../packages/ui/src/*"
       ]
     },
     "lib": [

@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import { devtools } from '@tanstack/devtools-vite'
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
@@ -13,6 +14,11 @@ const config = defineConfig({
 		tanstackRouter({ target: 'react', autoCodeSplitting: true }),
 		viteReact(),
 	],
+	resolve: {
+		alias: {
+			'@': fileURLToPath(new URL('../../packages/ui/src', import.meta.url)),
+		},
+	},
 })
 
 export default config
