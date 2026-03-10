@@ -1,25 +1,16 @@
-import type { FC, } from "react"
-import { hasPermission } from "../core/main"
-
+import type { FC } from 'react'
+import { hasPermission } from '../core/main'
 
 type CanPropsType = {
-    children: FC
+	children: FC
 } & Parameters<typeof hasPermission>[0]
 
-const Can: FC<CanPropsType> = (
-    { children,
-        ...props
-    }
+const Can: FC<CanPropsType> = ({ children, ...props }) => {
+	if (!hasPermission(props)) {
+		return null
+	}
 
-) => {
-
-    if (!hasPermission(props)) {
-        return null
-    }
-
-    return children({})
+	return children({})
 }
 
-export {
-    Can
-}
+export { Can }

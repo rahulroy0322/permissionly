@@ -9,10 +9,12 @@ const todoSchema = z.object({
 
 type TodoSchemaType = z.infer<typeof todoSchema>
 
-type TodoType = Prettify<TodoSchemaType & {
-	id: string
-	userId: string
-}>
+type TodoType = Prettify<
+	TodoSchemaType & {
+		id: string
+		userId: string
+	}
+>
 
 export type { TodoSchemaType, TodoType }
 

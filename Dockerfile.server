@@ -10,6 +10,7 @@ COPY package.json pnpm-workspace.yaml turbo.json ./
 
 COPY apps/server/package.json apps/server/package.json
 
+COPY packages/ts-config/package.json packages/ts-config/package.json
 COPY packages/policy/package.json packages/policy/package.json
 COPY packages/schema/package.json packages/schema/package.json
 
@@ -20,8 +21,9 @@ FROM pnpm AS code
 WORKDIR /app
 
 COPY apps/server apps/server
-COPY packages/policy/ packages/policy/
 
+COPY packages/ts-config/ packages/ts-config/
+COPY packages/policy/ packages/policy/
 COPY packages/schema/ packages/schema/
 
 FROM pnpm AS prunner
@@ -50,6 +52,8 @@ WORKDIR /app
 
 RUN npm install -g pnpm && pnpm config set store-dir ~/.pnpm-store
 
+COPY --from=builder app/packages/ts-config/package.json packages/ts-config/package.json
+
 COPY --from=builder app/apps/server/package.json apps/server/package.json
 
 COPY --from=builder app/packages/policy/package.json packages/policy/package.json
@@ -67,5 +71,7 @@ COPY --from=builder app/apps/server/dist/ apps/server/dist/
 COPY --from=builder app/packages/policy/ packages/policy/
 
 COPY --from=builder app/packages/schema/dist/ packages/schema/dist/
+
+RUN rm -r packages/ts-config/
 
 CMD [ "pnpm", "--filter", "server", "start" ]

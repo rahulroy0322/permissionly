@@ -1,33 +1,12 @@
 {
+  "extends": "ts-config/server",
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    
-    "useDefineForClassFields": true,
-     "rootDir": "./src",
-    "outDir": "./dist",
+    //   "useDefineForClassFields": true,
+    "rootDir": "src",
+    "outDir": "dist",
 
-"target": "esnext",
-    "module": "nodenext",
-    "skipLibCheck": false,
-
-    /* Bundler mode */
     "moduleResolution": "nodenext",
-    "allowImportingTsExtensions": false,
-    "verbatimModuleSyntax": false,
-    "moduleDetection": "force",
-
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-    "isolatedModules": true,
-        "noEmitOnError": true,
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "moduleDetection": "force"
   },
   "include": [
     "src"

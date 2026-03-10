@@ -9,6 +9,7 @@
     "ignoreUnknown": false,
     "includes": [
       "apps/**/*",
+      "packages/**/*",
       "!node_modules",
       "!.tanstack",
       "!.turbo",

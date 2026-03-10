@@ -1,20 +1,19 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 const postSchema = z.object({
-  title: z.string().min(1, "title is Required!"),
-  slug: z.string().min(1, "slug is Required!").slugify(),
-  content: z.string().min(1, "content is Required!"),
-  desc: z.string().min(1, "desc is Required!")
-    .max(100, "desc should not more then 100"),
+	title: z.string().min(1, 'title is Required!'),
+	slug: z.string().min(1, 'slug is Required!').slugify(),
+	content: z.string().min(1, 'content is Required!'),
+	desc: z
+		.string()
+		.min(1, 'desc is Required!')
+		.max(100, 'desc should not more then 100'),
 })
 
 const postUpdateSchema = postSchema.partial()
 
-type PostSchemaType = z.infer<typeof postSchema>;
+type PostSchemaType = z.infer<typeof postSchema>
 
-export type { PostSchemaType };
+export type { PostSchemaType }
 
-export {
-  postSchema,
-  postUpdateSchema
-};
+export { postSchema, postUpdateSchema }

@@ -24,10 +24,13 @@ const loginSchema = registerSchema.pick({
 type RegisterSchemaType = z.infer<typeof registerSchema>
 type LoginSchemaType = z.infer<typeof loginSchema>
 
-type UserType = Prettify<Omit<RegisterSchemaType, 'password'> & DefaultsType & {
-	role: RoleSchemaType
-	pass: string | null
-}>
+type UserType = Prettify<
+	Omit<RegisterSchemaType, 'password'> &
+		DefaultsType & {
+			role: RoleSchemaType
+			pass: string | null
+		}
+>
 
 export type { RegisterSchemaType, LoginSchemaType, UserType }
 
