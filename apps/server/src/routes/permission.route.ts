@@ -13,7 +13,7 @@ import {
 	isFromAdmin,
 } from '../middlewares/auth.middleware'
 
-const permissionRouter = Router()
+const permissionRouter: Router = Router()
 
 const withAdminHostOnly = [checkAuth, authRequired, isFromAdmin]
 

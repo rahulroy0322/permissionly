@@ -1,5 +1,3 @@
-// import cors from 'cors'
-
 import cors from 'cors'
 import express, { type Express, json, type Response, urlencoded } from 'express'
 import type { UserType } from 'schema/auth'

@@ -52,7 +52,7 @@ const Permission = pgTable('permissions', {
 	...defaults,
 })
 
-type _PermissionType = typeof Permission.$inferSelect
+// type _PermissionType = typeof Permission.$inferSelect
 
 // // just for ts check
 // const _Permission: _PermissionType = {

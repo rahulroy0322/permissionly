@@ -1,0 +1,67 @@
+# Git
+.git
+.gitignore
+
+# Dependency directories
+**/node_modules
+**/node_modules/
+**/.npm
+**/.yarn
+
+# Build outputs
+**/dist
+**/build
+**/.next
+**/out
+**/.turbo
+
+# Logs and debug files
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/.pnpm-debug.log*
+
+# Environment files (if you don't want them in images)
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Editor directories and files
+**/.vscode
+**/.idea
+**/*.swp
+**/*.swo
+**/.*.sw?
+**/.DS_Store
+.vscode
+
+# Turborepo specific
+**/.turbo
+**/turbo-linux
+**/turbo.log
+
+# Docker files (optional, they won't be copied anyway)
+**/Dockerfile
+**/.dockerignore
+
+
+# ignore files
+.*ignore
+
+# Cache directories from package managers
+**/.cache
+**/.yarn/cache
+**/.yarn/unplugged
+**/.yarn/install-state.gz
+
+
+README.md
+pnpm-lock.yaml
+biome.json
+components.json
+rest.http
+res
+_apps
+*.md
+*.MD
+

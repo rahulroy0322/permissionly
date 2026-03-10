@@ -2,29 +2,36 @@
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
 
-    "target": "ES2023",
-    "lib": [
-      "ES2023"
-    ],
+    "target": "esnext",
     "module": "nodenext",
     "rootDir": "./src",
     "outDir": "./dist",
-    "resolveJsonModule": true,
+    "skipLibCheck": true,
+
     "sourceMap": true,
-    "removeComments": true,
-    "noEmitOnError": true,
+    "declaration": true,
+    "declarationMap": true,
     "isolatedModules": true,
+    "noEmitOnError": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+
+    // "resolveJsonModule": true,
+
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noImplicitThis": true,
     "useUnknownInCatchVariables": true,
     "noImplicitReturns": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "skipLibCheck": true
+    "noUncheckedIndexedAccess": true
+    // "noImplicitOverride": true,
   },
   "exclude": [
     "node_modules",

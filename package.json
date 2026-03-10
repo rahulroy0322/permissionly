@@ -6,7 +6,7 @@
     "dev": "turbo run dev --parallel",
     "check": "biome check",
     "check:fix": "biome check --fix",
-    "start": "turbo run dev"
+    "start": "turbo run start"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.4",

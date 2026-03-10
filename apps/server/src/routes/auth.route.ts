@@ -7,7 +7,7 @@ import {
 } from '../controllers/auth.controller'
 import { authRequired, checkAuth } from '../middlewares/auth.middleware'
 
-const authRouter = Router()
+const authRouter: Router = Router()
 
 authRouter.post('/register', registerController)
 

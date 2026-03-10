@@ -8,12 +8,10 @@ import {
 } from '../controllers/post.controller'
 import { authRequired, checkAuth } from '../middlewares/auth.middleware'
 
-const postRouter = Router()
+const postRouter: Router = Router()
 
 // todo add permission
 const withPermission = [checkAuth, authRequired]
-
-// postRouter.get('/permission', getPermissionController)
 
 postRouter
 	.route('/')

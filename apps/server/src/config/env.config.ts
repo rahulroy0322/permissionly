@@ -20,6 +20,7 @@ const DB_CONFIG = {
 	user: ENV.DB_USER,
 	password: ENV.DB_PASSWORD,
 	database: ENV.DB_DATABASE,
+	ssl: ENV.DB_HOST !== 'localhost',
 }
 
 export { ENV, PORT, isDev, DB_CONFIG }
