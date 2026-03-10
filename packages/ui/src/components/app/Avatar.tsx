@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from 'react'
+import type { FC } from 'react'
 import { cn } from 'ui/lib/utils'
 
 import { UserCircle2 } from 'lucide-react'

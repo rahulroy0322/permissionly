@@ -4,8 +4,14 @@
   "version": "0.0.0",
   "description": "",
   "exports": {
-    "./*": "./src/*.schema.ts",
-    "./utils/*": "./src/utils/*.ts"
+    "./*": {
+      "default": "./dist/*.schema.js",
+      "types": "./dist/*.schema.d.ts"
+    },
+    "./utils/*": {
+      "default": "./dist/utils/*.js",
+      "types": "./dist/utils/*.d.ts"
+    }
   },
   "scripts": {
     "build": "tsc"
