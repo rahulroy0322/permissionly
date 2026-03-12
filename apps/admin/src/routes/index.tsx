@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import {
 	Route as RouteIcon,
 	Server,
@@ -8,9 +8,17 @@ import {
 	Zap,
 } from 'lucide-react'
 import { Can } from 'policy/web'
-import { useEffect } from 'react'
 
-export const Route = createFileRoute('/')({ component: App })
+// TODO!
+export const Route = createFileRoute('/')({
+	component: App,
+
+	beforeLoad: () => {
+		throw redirect({
+			to: '/admin/permission',
+		})
+	},
+})
 
 const features = [
 	{
@@ -56,19 +64,19 @@ const ProcetedData = () => {
 }
 
 function App() {
-	useEffect(() => {
-		fetch('http://localhost:8000/api/v1/permission', {
-			method: 'POST',
-			headers: {
-				// ? JUST FOR TEST
-				Authorization:
-					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI4MTE0NjQsImV4cCI6MTc3MjgxMjM2NH0.Yk_tPQePYOZ8cHTgNKvEeo5aOlZ13x6U3kJO9GGOd_4',
-			},
-		})
-			.then((res) => res.json())
-			.then(console.log)
-			.catch((e) => console.error('error', e))
-	}, [])
+	// useEffect(() => {
+	// 	fetch('http://localhost:8000/api/v1/permission', {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			// ? JUST FOR TEST
+	// 			Authorization:
+	// 				'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExYjgyNzRiLTk5NDUtNGVlNi1iYzI3LWNiNmY3ZmJmNjEzNCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsIm5hbWUiOiJ0ZXN0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI4MTE0NjQsImV4cCI6MTc3MjgxMjM2NH0.Yk_tPQePYOZ8cHTgNKvEeo5aOlZ13x6U3kJO9GGOd_4',
+	// 		},
+	// 	})
+	// 		.then((res) => res.json())
+	// 		.then(console.log)
+	// 		.catch((e) => console.error('error', e))
+	// }, [])
 
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">

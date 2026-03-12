@@ -5,6 +5,7 @@ import {
 } from '@tanstack/react-router'
 import { createRoot } from 'react-dom/client'
 import { routeTree } from './routeTree.gen'
+import './styles.css'
 import 'ui/index.css'
 
 const router = createRouter({

@@ -1,13 +1,19 @@
 import { z } from 'zod'
 import type { UserType } from './auth.schema'
+import type { PostSchemaType } from './post.schema'
 import type { TodoType } from './todo.schema'
 
 type ResorcessType = {
 	user: UserType
 	todo: TodoType
+	post: PostSchemaType
 }
 
-const resorces = ['user', 'todo'] as const satisfies (keyof ResorcessType)[]
+const resorces = [
+	'user',
+	'todo',
+	'post',
+] as const satisfies (keyof ResorcessType)[]
 
 const resorcessSchema = z.enum(
 	resorces,
