@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import type { UserType } from './auth.schema'
 
 const postSchema = z.object({
 	title: z.string().min(1, 'title is Required!'),
@@ -14,6 +15,16 @@ const postUpdateSchema = postSchema.partial()
 
 type PostSchemaType = z.infer<typeof postSchema>
 
-export type { PostSchemaType }
+type PostType = PostSchemaType & {
+	userId: string
+}
+
+type _UserType = Pick<UserType, 'name' | 'email' | 'id'>
+
+type PostWithUserType = PostType & {
+	user: _UserType
+}
+
+export type { PostSchemaType, PostType, PostWithUserType }
 
 export { postSchema, postUpdateSchema }
