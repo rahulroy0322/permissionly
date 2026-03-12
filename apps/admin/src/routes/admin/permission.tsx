@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import type { FC } from 'react'
 import type { PermissionSchemaType } from 'schema/permission'
-import PermissionsPage from 'src/components/pages/permissions.page'
+import { PermissionsPage } from 'src/components/pages/permissions.page'
 
 const PermissionsRoute: FC = () => {
 	const data: PermissionSchemaType[] = [

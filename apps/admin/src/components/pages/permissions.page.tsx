@@ -57,4 +57,4 @@ const PermissionsPage: FC<PermissionsPagePropsType> = ({
 	</Wraper>
 )
 
-export default PermissionsPage
+export { PermissionsPage }

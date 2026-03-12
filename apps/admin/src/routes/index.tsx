@@ -15,7 +15,7 @@ export const Route = createFileRoute('/')({
 
 	beforeLoad: () => {
 		throw redirect({
-			to: '/admin/permission',
+			to: '/admin/todo',
 		})
 	},
 })
