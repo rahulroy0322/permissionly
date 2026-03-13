@@ -7,6 +7,8 @@ import { createRoot } from 'react-dom/client'
 import { routeTree } from './routeTree.gen'
 import './styles.css'
 import 'ui/index.css'
+import { type FC, StrictMode } from 'react'
+import { ThemeProvider } from '@/components/app/theme/context'
 
 const router = createRouter({
 	routeTree,
@@ -42,6 +44,14 @@ if (!app) {
 	throw new Error('app not found')
 }
 
+const App: FC = () => (
+	<StrictMode>
+		<ThemeProvider>
+			<RouterProvider router={router} />
+		</ThemeProvider>
+	</StrictMode>
+)
+
 if (!app.innerHTML) {
-	createRoot(app).render(<RouterProvider router={router} />)
+	createRoot(app).render(<App />)
 }

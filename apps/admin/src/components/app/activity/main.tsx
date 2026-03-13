@@ -23,6 +23,7 @@ const Activities: FC<ActivitiesPropsType> = ({ activities }) => (
 
 				<Button
 					className={'items-center gap-1'}
+					nativeButton={false}
 					render={<Link to="/" />}
 					variant={'link'}
 				>

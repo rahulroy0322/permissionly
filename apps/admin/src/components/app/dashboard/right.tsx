@@ -79,6 +79,7 @@ const Chart: FC<ChartPropsType> = (props) => {
 
 				<Button
 					className="w-full mt-3"
+					nativeButton={false}
 					render={<Link to="/" />}
 				>
 					Manage Users

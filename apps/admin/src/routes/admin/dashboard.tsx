@@ -41,7 +41,7 @@ const activities = [
 		user: { id: '5', name: 'Mike Ross' }, // time: '2 mins ago'
 	},
 	{
-		id: '5',
+		id: '6',
 		action: 'delete',
 		text: 'User 1',
 		userId: '3',

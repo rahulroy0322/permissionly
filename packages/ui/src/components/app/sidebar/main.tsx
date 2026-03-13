@@ -22,7 +22,7 @@ const Sidebar: FC<SidebarPropsType> = (props) => {
             onClick={closeSidebar}
         />
         <aside
-            className="bg-background absolute left-0 top-0 bottom-0 w-1/2 md:w-full! overflow-hidden"
+            className="bg-background absolute left-0 top-0 bottom-0 w-1/2 md:w-full! overflow-hidden shadow"
             {...props}
         />
     </div>

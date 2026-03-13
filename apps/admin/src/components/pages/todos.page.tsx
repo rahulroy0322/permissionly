@@ -28,6 +28,7 @@ const TodosPage: FC<TodosPagePropsType> = ({ todos }) => (
 					<TabsTrigger value="box">
 						<Button
 							className="bg-transparent! text-inherit"
+							nativeButton={false}
 							render={<LayoutTemplate />}
 							size={'icon'}
 						/>
@@ -35,6 +36,7 @@ const TodosPage: FC<TodosPagePropsType> = ({ todos }) => (
 					<TabsTrigger value="table">
 						<Button
 							className="bg-transparent! text-inherit"
+							nativeButton={false}
 							render={<Table />}
 							size={'icon'}
 						/>
@@ -45,6 +47,7 @@ const TodosPage: FC<TodosPagePropsType> = ({ todos }) => (
 					>
 						<Button
 							className="bg-transparent! text-inherit"
+							nativeButton={false}
 							render={<List />}
 							size={'icon'}
 						/>

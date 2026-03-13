@@ -1,7 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import type { FC } from 'react'
 import { Avatar } from '@/components/app/Avatar'
-import { Button } from '@/components/ui/button'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -20,14 +19,7 @@ type MeHeaderUIPropsType = {
 
 const MeHeaderUI: FC<MeHeaderUIPropsType> = ({ src, name }) => (
 	<DropdownMenu>
-		<DropdownMenuTrigger
-			render={
-				<Button
-					size={'icon-sm'}
-					variant={'outline'}
-				/>
-			}
-		>
+		<DropdownMenuTrigger>
 			<Avatar
 				alt={name}
 				className="size-5"
@@ -40,13 +32,19 @@ const MeHeaderUI: FC<MeHeaderUIPropsType> = ({ src, name }) => (
 		>
 			<DropdownMenuGroup>
 				<DropdownMenuLabel>My Account</DropdownMenuLabel>
-				<DropdownMenuItem render={<Link to="/" />}>
+				<DropdownMenuItem
+					nativeButton={false}
+					render={<Link to="/" />}
+				>
 					Profile
 					<DropdownMenuShortcut className="opacity-50">
 						⇧⌘P
 					</DropdownMenuShortcut>
 				</DropdownMenuItem>
-				<DropdownMenuItem render={<Link to="/" />}>
+				<DropdownMenuItem
+					nativeButton={false}
+					render={<Link to="/" />}
+				>
 					Settings
 					<DropdownMenuShortcut className="opacity-50">⌘S</DropdownMenuShortcut>
 				</DropdownMenuItem>

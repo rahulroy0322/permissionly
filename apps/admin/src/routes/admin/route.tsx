@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Outlet } from '@tanstack/react-router'
 import type { FC } from 'react'
 import { AdminHeader } from '#/admin/header'
 import { AppSidebar } from '#/sidebar/main'
@@ -8,8 +8,11 @@ const AdminLayout: FC = () => (
 	<div className="h-screen w-screen flex overflow-hidden">
 		<SidebarProvider>
 			<AppSidebar />
-			<main className="grow">
+			<main className="grow overflow-hidden flex flex-col">
 				<AdminHeader />
+				<div className="flex-1 overflow-auto">
+					<Outlet />
+				</div>
 			</main>
 		</SidebarProvider>
 	</div>
