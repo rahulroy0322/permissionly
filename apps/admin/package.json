@@ -21,6 +21,7 @@
     "policy": "workspace:*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "recharts": "2.15.4",
     "schema": "workspace:*",
     "tailwindcss": "^4.1.18",
     "ui": "workspace:*"
