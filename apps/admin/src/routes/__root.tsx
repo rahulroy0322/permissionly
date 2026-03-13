@@ -2,18 +2,19 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import type { FC } from 'react'
-import Footer from '#/footer'
-import Header from '#/header'
+
+// import Footer from '#/footer'
+// import Header from '#/header'
 
 const RootLayout: FC = () => {
-	const user = null
+	// const user = null
 	return (
-		<div className="h-screen flex flex-col gap-0.5 overflow-auto">
-			<Header user={user} />
-			<div>
-				<Outlet />
-			</div>
-			<Footer />
+		<div>
+			{/* <Header user={user} />
+			<div> */}
+			<Outlet />
+			{/* </div>
+			<Footer /> */}
 			<TanStackDevtools
 				config={{
 					position: 'bottom-right',
