@@ -1,0 +1,23 @@
+{
+  "name": "auth",
+  "version": "0.0.0",
+  "description": "",
+  "private": true,
+  "exports": {
+    ".": "./src/main.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "author": "Rahul Roy",
+  "license": "MIT",
+  "dependencies": {
+    "@tanstack/react-form": "^1.28.5",
+    "form": "workspace:*",
+    "schema": "workspace:*",
+    "ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14"
+  }
+}

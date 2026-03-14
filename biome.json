@@ -16,7 +16,7 @@
       "!.vscode",
       "!dist",
       "!*lock*",
-      "!**/ui/**/*"
+      "!packages/ui/src/components/ui/**/*"
     ]
   },
   "formatter": {
