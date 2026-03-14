@@ -28,7 +28,7 @@ const FormBase: FC<FormBasePropsType> = ({ children, label, description }) => {
 				{description && <FieldDescription>{description}</FieldDescription>}
 			</FieldContent>
 			{children}
-			{!!field.state.meta.errors.length && (
+			{isInvalid && !!field.state.meta.errors.length && (
 				<FieldError errors={field.state.meta.errors} />
 			)}
 		</Field>

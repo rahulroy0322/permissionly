@@ -1,9 +1,10 @@
 {
-  "extends": "ts-config/server",
+  "extends": "ts-config/base",
   "compilerOptions": {
     //   "useDefineForClassFields": true,
     "rootDir": "src",
     "outDir": "dist",
+    "noEmit": true,
 
     "moduleResolution": "nodenext",
     "moduleDetection": "force"

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { RegisterForm, SocialLogins } from 'auth'
 import type { FC } from 'react'
 import { LeftPart } from '#/auth/left'
+import { RightPart } from '#/auth/right'
 import { Button } from '@/components/ui/button'
 
 const RegisterPage: FC = () => (
@@ -27,10 +28,10 @@ const RegisterPage: FC = () => (
 
 				<SocialLogins />
 			</LeftPart>
-			{/* <RightPart
-                className="hidden md:block"
-                mode="login"
-            /> */}
+			<RightPart
+				className="hidden md:block"
+				mode="register"
+			/>
 		</div>
 	</div>
 )

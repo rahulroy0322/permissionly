@@ -4,17 +4,11 @@
   "version": "0.0.0",
   "description": "",
   "exports": {
-    "./*": {
-      "default": "./dist/*.schema.js",
-      "types": "./dist/*.schema.d.ts"
-    },
-    "./utils/*": {
-      "default": "./dist/utils/*.js",
-      "types": "./dist/utils/*.d.ts"
-    }
+    "./*": "./src/*.schema.ts",
+    "./utils/*": "./src/utils/*.ts"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc -b"
   },
   "dependencies": {
     "pino": "^10.3.1",
