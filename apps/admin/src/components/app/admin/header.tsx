@@ -12,7 +12,7 @@ const AdminHeader: FC = () => (
 				<SidebarTrigger />
 				<Path />
 			</div>
-			<div>
+			<div className='flex items-center gap-4'>
 				<ThemeSwitch />
 				<MeHeader />
 			</div>
