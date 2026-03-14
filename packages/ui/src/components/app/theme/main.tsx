@@ -1,4 +1,4 @@
-import { Flashlight, Moon, Sun, type LucideIcon } from "lucide-react"
+import { LaptopMinimal, Moon, Sun, type LucideIcon } from "lucide-react"
 
 import {
     DropdownMenu,
@@ -11,7 +11,7 @@ import { useTheme, type ThemeType } from "./context"
 
 
 const themes = {
-    light: Sun, dark: Moon, system: Flashlight
+    light: Sun, dark: Moon, system: LaptopMinimal
 } as const satisfies Record<
     ThemeType,
     LucideIcon
