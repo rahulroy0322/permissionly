@@ -10,7 +10,7 @@ import Wraper from '#/wraper'
 type StatsPropsType = {}
 
 const Stats: FC<StatsPropsType> = () => (
-	<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+	<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 		<DashboardStatCard
 			change="+12%"
 			className="bg-primary/10 text-primary"
@@ -48,7 +48,7 @@ const DashboardPage: FC<DashboardPagePropsType> = ({ activities, data }) => (
 	<Wraper className="py-4 ">
 		<main className="space-y-4">
 			<Stats />
-			<div className="grid grid-cols-1 lg:grid-cols-3 *:space-y-2 space-x-2">
+			<div className="grid grid-cols-1 lg:grid-cols-3 *:space-y-4 gap-4">
 				<Left
 					activities={activities}
 					data={data}
