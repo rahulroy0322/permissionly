@@ -6,7 +6,7 @@ import { SidebarProvider } from '@/components/app/sidebar/context'
 
 const AdminLayout: FC = () => (
 	<div className="h-screen w-screen flex overflow-hidden">
-		<SidebarProvider>
+		<SidebarProvider defaultOpen>
 			<AppSidebar />
 			<main className="grow overflow-hidden flex flex-col">
 				<AdminHeader />

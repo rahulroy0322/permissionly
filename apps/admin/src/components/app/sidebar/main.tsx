@@ -1,6 +1,6 @@
-import { Link } from '@tanstack/react-router'
-import { LayoutDashboard, Shield, Users } from 'lucide-react'
-import type { FC } from 'react'
+import { type FileRoutesByPath, Link } from '@tanstack/react-router'
+import { LayoutDashboard, ListTodo, Newspaper, Shield } from 'lucide-react'
+import type { FC, ReactNode } from 'react'
 import { LogoText } from '#/logo'
 import { SidebarContent } from '@/components/app/sidebar/content'
 import {
@@ -12,24 +12,54 @@ import {
 import { SidebarHeader, SidebarLogo } from '@/components/app/sidebar/header'
 import { Sidebar } from '@/components/app/sidebar/main'
 
+type MenuGroupType = {
+	title: string
+	items: MenuItemType[]
+}
+
+type MenuItemType = {
+	title: Capitalize<string>
+	Icon: ReactNode
+	url: keyof FileRoutesByPath
+}
+
 const menu = [
 	{
 		title: 'Getting Started',
-		// url: "#",
 		items: [
 			{
 				title: 'DashBoard',
 				Icon: <LayoutDashboard />,
-				// url: "#",
-			},
-			{
-				title: 'Users',
-				// url: "#",
-				Icon: <Users />,
+				url: '/admin/dashboard',
 			},
 		],
 	},
-]
+	{
+		title: 'Resources',
+		items: [
+			{
+				title: 'Todos',
+				Icon: <ListTodo />,
+				url: '/admin/todo',
+			},
+			{
+				title: 'Posts',
+				Icon: <Newspaper />,
+				url: '/admin/post',
+			},
+		],
+	},
+	{
+		title: 'Core',
+		items: [
+			{
+				title: 'Permissions',
+				Icon: <Shield />,
+				url: '/admin/permission',
+			},
+		],
+	},
+] satisfies MenuGroupType[]
 
 const AppSidebar: FC = () => (
 	<Sidebar>
@@ -46,13 +76,18 @@ const AppSidebar: FC = () => (
 				<SidebarGroup key={title}>
 					<SidebarGroupLabel>{title}</SidebarGroupLabel>
 					<SidebarGroupContent>
-						{items.map(({ title, Icon }) => (
-							<SidebarGroupItem
-								Icon={Icon}
+						{items.map(({ title, url, Icon }) => (
+							<Link
 								key={title}
+								to={url}
 							>
-								{title}
-							</SidebarGroupItem>
+								<SidebarGroupItem
+									Icon={Icon}
+									key={title}
+								>
+									{title}
+								</SidebarGroupItem>
+							</Link>
 						))}
 					</SidebarGroupContent>
 				</SidebarGroup>
@@ -61,4 +96,5 @@ const AppSidebar: FC = () => (
 	</Sidebar>
 )
 
-export { AppSidebar }
+export type { MenuItemType }
+export { AppSidebar, menu }
