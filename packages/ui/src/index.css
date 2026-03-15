@@ -139,3 +139,23 @@
 		@apply cursor-pointer;
 	}
 }
+
+@layer utility {
+	.sidebar {
+		@apply h-full w-15 md:max-w-60 transition-all duration-200 z-50 relative;
+
+		&[data-state="open"] {
+			@apply w-60;
+		}
+
+		@media (width <= 768px) {
+			& {
+				@apply fixed w-screen!;
+			}
+
+			&[data-state="close"] {
+				@apply -translate-x-full;
+			}
+		}
+	}
+}

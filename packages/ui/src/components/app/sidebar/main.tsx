@@ -12,16 +12,7 @@ const Sidebar: FC<SidebarPropsType> = (props) => {
 
 	return (
 		<div
-			className={cn(
-				'fixed inset-0 transition-all group/sidebar z-60',
-				{
-					'-translate-x-full': !isOpen,
-				},
-				'md:translate-x-0! md:w-60 md:max-w-60 md:static',
-				{
-					'md:w-15': !isOpen,
-				}
-			)}
+			className={cn('sidebar group/sidebar')}
 			data-state={isOpen ? 'open' : 'close'}
 		>
 			<button
