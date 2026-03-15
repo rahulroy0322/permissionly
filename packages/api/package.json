@@ -1,0 +1,14 @@
+{
+  "name": "api",
+  "version": "0.0.0",
+  "description": "",
+  "private": true,
+  "exports": {
+    ".": "./src/main.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "author": "Rahul Roy",
+  "license": "MIT"
+}

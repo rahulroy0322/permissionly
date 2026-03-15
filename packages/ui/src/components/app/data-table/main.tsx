@@ -18,7 +18,7 @@ const DataTable = <T extends Record<string, unknown>>({
 	table,
 }: DataTablePropsType<T>): ReactNode => (
 	<Table>
-		<TableHeader className="sticky top-0 left-0 z-50 bg-background">
+		<TableHeader className="sticky top-0 left-0 z-40 bg-background">
 			{table.getHeaderGroups().map((header) => (
 				<TableRow key={header.id}>
 					{header.headers.map((head) => (

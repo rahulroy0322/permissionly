@@ -1,6 +1,12 @@
-import { createFileRoute, Navigate, Outlet } from '@tanstack/react-router'
+import {
+	createFileRoute,
+	Navigate,
+	Outlet,
+	redirect,
+} from '@tanstack/react-router'
 import { useAuth } from 'auth'
 import type { FC } from 'react'
+import { CONFIG } from 'src/config'
 import { AppLoader } from 'ui/components/app/loader.tsx'
 import { AdminHeader } from '#/admin/header'
 import { AppSidebar } from '#/sidebar/main'
@@ -36,6 +42,15 @@ const AdminLayout: FC = () => {
 
 const Route = createFileRoute('/admin')({
 	component: AdminLayout,
+	beforeLoad: () => {
+		const refToken = localStorage.getItem(CONFIG.refreshKey)
+
+		if (!refToken) {
+			throw redirect({
+				to: '/login',
+			})
+		}
+	},
 })
 
 export { Route }

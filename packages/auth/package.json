@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "@tanstack/react-form": "^1.28.5",
+    "api": "workspace:*",
     "form": "workspace:*",
     "schema": "workspace:*",
     "ui": "workspace:*"

@@ -1,9 +1,12 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useLoaderData } from '@tanstack/react-router'
 import type { FC } from 'react'
-import type { PostWithUserType } from 'schema/post'
+import { getPosts } from 'src/api/post'
 import { PostsPage } from 'src/components/pages/posts.page'
 
-const posts: PostWithUserType[] = [
+// TODO!
+
+/* 
+const _posts: PostWithUserType[] = [
 	{
 		slug: 'mastering-rbac-systems',
 		title: 'Mastering RBAC Systems',
@@ -41,12 +44,35 @@ const posts: PostWithUserType[] = [
 		},
 	},
 ]
+*/
 const PostsRoute: FC = () => {
-	return <PostsPage posts={posts} />
+	const { posts, meta } = useLoaderData({
+		from: '/admin/post',
+	})
+	return (
+		<PostsPage
+			{...meta}
+			posts={posts}
+		/>
+	)
 }
 
 const Route = createFileRoute('/admin/post')({
 	component: PostsRoute,
+	loader: async () => {
+		const { posts } = await getPosts()
+
+		// todo!
+		return {
+			posts,
+			meta: {
+				total: 40,
+				publised: 36,
+				views: 1890,
+				lastChanged: new Date().toDateString(),
+			},
+		}
+	},
 })
 
 export { Route }

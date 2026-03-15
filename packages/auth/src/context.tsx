@@ -1,3 +1,4 @@
+import { get, post } from 'api'
 import {
 	createContext,
 	type FC,
@@ -9,18 +10,6 @@ import {
 } from 'react'
 import type { LoginSchemaType, RegisterSchemaType, UserType } from 'schema/auth'
 
-type SuccessType<T> = {
-	success: true
-	data: T
-}
-
-type ErrorType<E = Error> = {
-	success: false
-	error: E
-}
-
-type ResType<T> = SuccessType<T> | ErrorType<Error>
-
 type AuthContentType = {
 	user: UserType | null
 	loading: boolean
@@ -30,44 +19,6 @@ type AuthContentType = {
 }
 
 const AuthContext = createContext<AuthContentType | null>(null)
-
-const req = async <T extends Record<string, unknown>>({
-	url,
-	base,
-	method,
-	// @ts-expect-error
-	body,
-	headers,
-}: {
-	base: string
-	url: string
-	headers?: Record<string, string>
-} & (
-	| {
-			method: 'GET'
-	  }
-	| {
-			method: 'POST'
-			body: Record<string, unknown>
-	  }
-)) => {
-	const res = await fetch(`${base}/api/v1/auth/${url}`, {
-		method,
-		body: body ? JSON.stringify(body) : undefined,
-		headers: {
-			'content-type': 'application/json',
-			...(headers || {}),
-		},
-	})
-
-	const data = (await res.json()) as ResType<T>
-
-	if (!data.success) {
-		throw data.error
-	}
-
-	return data.data
-}
 
 type AuthProviderPropsType = {
 	children: ReactNode
@@ -95,7 +46,7 @@ const AuthProvider: FC<AuthProviderPropsType> = ({
 				const {
 					token: { access, refresh },
 					user,
-				} = await req<{
+				} = await post<{
 					user: UserType
 					token: {
 						refresh: string
@@ -103,9 +54,8 @@ const AuthProvider: FC<AuthProviderPropsType> = ({
 					}
 				}>({
 					base,
-					url: 'login',
+					url: 'auth/login',
 					body,
-					method: 'POST',
 				})
 				localStorage.setItem(accessKey, access)
 				localStorage.setItem(refreshKey, refresh)
@@ -128,7 +78,7 @@ const AuthProvider: FC<AuthProviderPropsType> = ({
 				const {
 					token: { access, refresh },
 					user,
-				} = await req<{
+				} = await post<{
 					user: UserType
 					token: {
 						refresh: string
@@ -136,9 +86,8 @@ const AuthProvider: FC<AuthProviderPropsType> = ({
 					}
 				}>({
 					base,
-					url: 'register',
+					url: 'auth/register',
 					body,
-					method: 'POST',
 				})
 				localStorage.setItem(accessKey, access)
 				localStorage.setItem(refreshKey, refresh)
@@ -154,15 +103,14 @@ const AuthProvider: FC<AuthProviderPropsType> = ({
 
 	const refreshToken = useCallback(
 		() =>
-			req<{
+			get<{
 				token: {
 					refresh?: string
 					access: string
 				}
 			}>({
 				base,
-				url: 'token',
-				method: 'GET',
+				url: 'auth/token',
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem(refreshKey)}`,
 				},
@@ -172,12 +120,11 @@ const AuthProvider: FC<AuthProviderPropsType> = ({
 
 	const me = useCallback(
 		(token: string) =>
-			req<{
+			get<{
 				user: UserType
 			}>({
 				base,
-				url: 'me',
-				method: 'GET',
+				url: 'auth/me',
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},

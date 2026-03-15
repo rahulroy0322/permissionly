@@ -11,6 +11,7 @@ import { AuthProvider } from 'auth'
 import { type FC, StrictMode } from 'react'
 import { ThemeProvider } from '@/components/app/theme/context'
 import { Toaster } from '@/components/ui/sonner'
+import { CONFIG } from './config'
 
 const router = createRouter({
 	routeTree,
@@ -49,7 +50,10 @@ if (!app) {
 const App: FC = () => (
 	<StrictMode>
 		<ThemeProvider>
-			<AuthProvider base="http://localhost:8000">
+			<AuthProvider
+				{...CONFIG}
+				base={CONFIG.BASE}
+			>
 				<RouterProvider router={router} />
 			</AuthProvider>
 			<Toaster

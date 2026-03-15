@@ -57,7 +57,7 @@ const columns: ColumnDef<PostWithUserType>[] = [
 				title={title}
 			>
 				<h2 className="line-clamp-1 text-ellipsis font-bold leading-tight w-full">
-					{title} Lorem ipsum dolor sit.
+					{title}
 				</h2>
 			</div>
 		),
@@ -87,7 +87,11 @@ const columns: ColumnDef<PostWithUserType>[] = [
 					className="flex items-center gap-1"
 					to="/admin/post"
 				>
-					<LinkIcon size={10} /> {slug}
+					<LinkIcon
+						className="size-3"
+						size={10}
+					/>{' '}
+					{slug}
 				</Link>
 			</div>
 		),
@@ -134,7 +138,7 @@ const columns: ColumnDef<PostWithUserType>[] = [
 		cell: ({
 			row: {
 				original: {
-					user: { name },
+					author: { name },
 				},
 			},
 		}) => (

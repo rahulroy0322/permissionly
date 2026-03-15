@@ -22,7 +22,7 @@ type PostType = PostSchemaType & {
 type _UserType = Pick<UserType, 'name' | 'email' | 'id'>
 
 type PostWithUserType = PostType & {
-	user: _UserType
+	author: _UserType
 }
 
 export type { PostSchemaType, PostType, PostWithUserType }

@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 
 type PostStatCardPropsType = {
-	value: number | `${number}${'+' | '-' | string}`
+	value: string
 	label: Uppercase<string>
 	Icon: LucideIcon
 	className: string
