@@ -1,6 +1,7 @@
 import { type LucideIcon, User, UserLock, UserStar, Users } from 'lucide-react'
 import type { FC } from 'react'
 import type { PermissionSchemaType } from 'schema/permission'
+import { cn } from '@/lib/utils'
 
 const getIconAndText = (
 	role: PermissionSchemaType['role']
@@ -43,7 +44,7 @@ const UserIcon: FC<{
 		return (
 			<div className="flex items-center gap-2">
 				<User
-					className={getColor(role)}
+					className={cn('size-5', getColor(role))}
 					size={20}
 				/>
 				<span className="text-md font-semibold">{role || 'No Role'}</span>
@@ -53,7 +54,7 @@ const UserIcon: FC<{
 
 	return (
 		<Icon
-			className={getColor(role)}
+			className={cn('size-5', getColor(role))}
 			size={20}
 		/>
 	)

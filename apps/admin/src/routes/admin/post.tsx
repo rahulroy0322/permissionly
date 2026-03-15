@@ -2,6 +2,7 @@ import { createFileRoute, useLoaderData } from '@tanstack/react-router'
 import type { FC } from 'react'
 import { getPosts } from 'src/api/post'
 import { PostsPage } from 'src/components/pages/posts.page'
+import { AppLoader } from '@/components/app/loader'
 
 // TODO!
 
@@ -59,6 +60,7 @@ const PostsRoute: FC = () => {
 
 const Route = createFileRoute('/admin/post')({
 	component: PostsRoute,
+	pendingComponent: AppLoader,
 	loader: async () => {
 		const { posts } = await getPosts()
 

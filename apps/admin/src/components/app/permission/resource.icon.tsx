@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 import type { FC } from 'react'
 import type { PermissionSchemaType } from 'schema/permission'
+import { cn } from '@/lib/utils'
 
 const getIcon = (
 	resorce: PermissionSchemaType['resorce']
@@ -18,17 +19,17 @@ const getIcon = (
 		case 'user':
 			return {
 				Icon: User,
-				color: '',
+				color: 'text-primary',
 			}
 		case 'todo':
 			return {
 				Icon: ListTodo,
-				color: '',
+				color: 'text-blue-500',
 			}
 		case 'post':
 			return {
 				Icon: Newspaper,
-				color: '',
+				color: 'text-emerald-500',
 			}
 		default:
 			return null
@@ -43,7 +44,10 @@ const ResourceIcon: FC<{
 	if (!Icon) {
 		return (
 			<div className="flex items-center gap-2">
-				<Database size={20} />
+				<Database
+					className="size-5"
+					size={20}
+				/>
 				<span className="text-md font-semibold">{resorce || 'No Resorce'}</span>
 			</div>
 		)
@@ -51,7 +55,7 @@ const ResourceIcon: FC<{
 
 	return (
 		<Icon.Icon
-			className={Icon.color}
+			className={cn('size-5', Icon.color)}
 			size={20}
 		/>
 	)

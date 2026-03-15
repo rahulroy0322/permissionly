@@ -1,63 +1,17 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useLoaderData } from '@tanstack/react-router'
 import type { FC } from 'react'
-import type { PermissionSchemaType } from 'schema/permission'
+import { getPermission } from 'src/api/permission'
 import { PermissionsPage } from 'src/components/pages/permissions.page'
+import { AppLoader } from '@/components/app/loader'
 
 const PermissionsRoute: FC = () => {
-	const data: PermissionSchemaType[] = [
-		{
-			role: 'super',
-			value: true,
-		},
-		{
-			role: 'admin',
-			resorce: 'todo',
-			value: true,
-		},
-		{
-			role: 'moderator',
-			resorce: 'user',
-			value: false,
-		},
-		{
-			role: 'moderator',
-			resorce: 'user',
-			action: 'create',
-			value: false,
-		},
-		{
-			role: 'moderator',
-			resorce: 'user',
-			action: 'update',
-			value: false,
-		},
-		{
-			role: 'moderator',
-			resorce: 'user',
-			action: 'read',
-			value: false,
-		},
-		{
-			role: 'moderator',
-			resorce: 'user',
-			action: 'delete',
-			value: false,
-		},
-	]
-
-	const total = data.length,
-		allowed = data.filter(({ value }) => value === true).length,
-		denied = data.filter(({ value }) => value === false).length,
-		meta = {
-			allowed,
-			denied,
-			logical: total - (allowed + denied),
-			total,
-		}
+	const { meta, permissions } = useLoaderData({
+		from: '/admin/permission',
+	})
 
 	return (
 		<PermissionsPage
-			data={data}
+			data={permissions}
 			{...meta}
 		/>
 	)
@@ -65,6 +19,27 @@ const PermissionsRoute: FC = () => {
 
 const Route = createFileRoute('/admin/permission')({
 	component: PermissionsRoute,
+	pendingComponent: AppLoader,
+	loader: async () => {
+		const { permissions } = await getPermission()
+
+		// ! todo move to table
+		const total = permissions.length,
+			allowed = permissions.filter(({ value }) => value === true).length,
+			denied = permissions.filter(({ value }) => value === false).length
+
+		const meta = {
+			allowed,
+			denied,
+			logical: total - (allowed + denied),
+			total,
+		}
+
+		return {
+			permissions,
+			meta,
+		}
+	},
 })
 
 export { Route }

@@ -1,6 +1,7 @@
 import type { LucideIcon } from 'lucide-react'
 import type { FC } from 'react'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
+import { cn } from '@/lib/utils'
 
 type StatCardPropsType = {
 	value: number | `${number}${'+' | '-'}`
@@ -14,7 +15,7 @@ const StatCard: FC<StatCardPropsType> = ({ Icon, color, label, value }) => (
 		<CardContent>
 			<div className="flex items-center justify-between">
 				<Icon
-					className={color}
+					className={cn('size-5', color)}
 					size={20}
 				/>
 
