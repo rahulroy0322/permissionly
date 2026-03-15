@@ -1,10 +1,13 @@
 import { useAppForm } from 'form'
-import { type FC, type SubmitEvent, useCallback } from 'react'
+import { type FC, type SubmitEvent, useCallback, useEffect } from 'react'
 import { type RegisterSchemaType, registerSchema } from 'schema/auth'
 import { Button } from 'ui/ui/button'
-import { Field } from 'ui/ui/field'
+import { Field, FieldError } from 'ui/ui/field'
+import { toast } from 'ui/ui/sonner'
+import { useAuth } from './context'
 
 const RegisterForm: FC = () => {
+	const { register, loading, error } = useAuth()
 	const { AppField, handleSubmit: submit } = useAppForm({
 		defaultValues: {
 			name: '',
@@ -15,10 +18,7 @@ const RegisterForm: FC = () => {
 			onBlur: registerSchema,
 		},
 
-		onSubmit: ({ value }) => {
-			// biome-ignore lint/suspicious/noConsole: temp
-			console.log('xalsx', value)
-		},
+		onSubmit: ({ value }) => register(value),
 	})
 	const handleSubmit = useCallback(
 		(e: SubmitEvent<HTMLFormElement>) => {
@@ -28,11 +28,28 @@ const RegisterForm: FC = () => {
 		[submit]
 	)
 
+	useEffect(() => {
+		if (error) {
+			toast.error(error.message ?? String(error))
+		}
+	}, [error])
+
 	return (
 		<form
 			className="space-y-2"
 			onSubmit={handleSubmit}
 		>
+			{error ? (
+				<FieldError
+					errors={[
+						error.message
+							? error
+							: {
+									message: String(error),
+								},
+					]}
+				/>
+			) : null}
 			<AppField name="name">
 				{({ Input }) => (
 					<Input
@@ -66,6 +83,7 @@ const RegisterForm: FC = () => {
 			<Field>
 				<Button
 					className="w-full"
+					disabled={loading}
 					type="submit"
 				>
 					Create Account

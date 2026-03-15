@@ -7,8 +7,10 @@ import { createRoot } from 'react-dom/client'
 import { routeTree } from './routeTree.gen'
 import './styles.css'
 import 'ui/index.css'
+import { AuthProvider } from 'auth'
 import { type FC, StrictMode } from 'react'
 import { ThemeProvider } from '@/components/app/theme/context'
+import { Toaster } from '@/components/ui/sonner'
 
 const router = createRouter({
 	routeTree,
@@ -47,7 +49,13 @@ if (!app) {
 const App: FC = () => (
 	<StrictMode>
 		<ThemeProvider>
-			<RouterProvider router={router} />
+			<AuthProvider base="http://localhost:8000">
+				<RouterProvider router={router} />
+			</AuthProvider>
+			<Toaster
+				closeButton
+				richColors
+			/>
 		</ThemeProvider>
 	</StrictMode>
 )
