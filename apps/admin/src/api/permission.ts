@@ -1,5 +1,5 @@
 import type { PermissionSchemaType } from 'schema/permission'
-import { getWithToken } from './main'
+import { getWithToken, postWithToken } from './main'
 
 const getPermission = () =>
 	getWithToken<{
@@ -8,4 +8,10 @@ const getPermission = () =>
 		url: 'permission',
 	})
 
-export { getPermission }
+const createPermission = (permission: PermissionSchemaType) =>
+	postWithToken({
+		url: 'permission',
+		body: permission,
+	})
+
+export { getPermission, createPermission }
