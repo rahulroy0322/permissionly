@@ -13,11 +13,6 @@ const config = defineConfig({
 		tanstackRouter({ target: 'react', autoCodeSplitting: true }),
 		viteReact(),
 	],
-	build: {
-		rollupOptions: {
-			external: ['react', 'react-dom', 'react/jsx-runtime'],
-		},
-	},
 })
 
 export default config

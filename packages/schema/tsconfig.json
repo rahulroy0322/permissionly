@@ -3,11 +3,7 @@
   "compilerOptions": {
     //   "useDefineForClassFields": true,
     "rootDir": "src",
-    "outDir": "dist",
-    "noEmit": true,
-
-    "moduleResolution": "nodenext",
-    "moduleDetection": "force"
+    "noEmit": true
   },
   "include": [
     "src"

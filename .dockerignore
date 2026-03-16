@@ -43,6 +43,7 @@
 # Docker files (optional, they won't be copied anyway)
 **/Dockerfile
 **/.dockerignore
+**/Dockerfile*
 
 
 # ignore files

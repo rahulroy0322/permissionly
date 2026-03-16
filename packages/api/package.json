@@ -10,5 +10,8 @@
     "build": "tsc -b"
   },
   "author": "Rahul Roy",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "ts-config": "workspace:*"
+  }
 }

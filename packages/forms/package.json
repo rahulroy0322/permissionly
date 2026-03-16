@@ -14,12 +14,12 @@
   "dependencies": {
     "form": "workspace:*",
     "lucide-react": "^0.545.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.4",
     "schema": "workspace:*",
     "ui": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "^19.2.14"
+    "@types/react": "^19.2.14",
+    "ts-config": "workspace:*"
   }
 }
