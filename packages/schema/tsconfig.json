@@ -1,9 +1,8 @@
 {
   "extends": "ts-config/base",
   "compilerOptions": {
-    //   "useDefineForClassFields": true,
     "rootDir": "src",
-    "noEmit": true
+    "outDir": "dist"
   },
   "include": [
     "src"

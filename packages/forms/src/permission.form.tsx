@@ -508,7 +508,7 @@ const PermissionFrom: FC<PermissionFromPropsType> = ({
 					disabled={disabled}
 					type="submit"
 				>
-					Login
+					Create Permission
 				</Button>
 			</Field>
 		</form>
