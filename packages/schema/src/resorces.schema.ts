@@ -24,4 +24,4 @@ type ResorceSchemaType = z.infer<typeof resorcessSchema>
 
 export type { ResorcessType, ResorceSchemaType }
 
-export { resorcessSchema }
+export { resorcessSchema, resorces }

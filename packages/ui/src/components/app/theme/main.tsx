@@ -5,7 +5,7 @@ import {
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from 'ui/ui/dropdown-menu'
 import { type ThemeType, useTheme } from './context'
 
 const themes = {

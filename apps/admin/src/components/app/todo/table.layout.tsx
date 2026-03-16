@@ -7,8 +7,8 @@ import {
 	EmptyHeader,
 	EmptyMedia,
 	EmptyTitle,
-} from '@/components/ui/empty'
-import { TabsContent } from '@/components/ui/tabs'
+} from 'ui/ui/empty'
+import { TabsContent } from 'ui/ui/tabs'
 
 type TableLayoutPropsType = {
 	todos: TodoWithSubAndUserType[]

@@ -1,9 +1,10 @@
 import { Database, Layers, Lock, Unlock } from 'lucide-react'
 import type { FC } from 'react'
 import type { PermissionSchemaType } from 'schema/permission'
-import { StatCard } from '#/permission/stat.card'
-import { PermissionsTable } from '#/permission/table'
-import Wraper from '#/wraper'
+import { PermissionCreateFrom } from '@/permission/create.form'
+import { StatCard } from '@/permission/stat.card'
+import { PermissionsTable } from '@/permission/table'
+import Wraper from '@/wraper'
 
 type PermissionsPagePropsType = {
 	data: PermissionSchemaType[]
@@ -52,6 +53,9 @@ const PermissionsPage: FC<PermissionsPagePropsType> = ({
 					value={logical}
 				/>
 			</div>
+
+			<PermissionCreateFrom />
+
 			<PermissionsTable data={data} />
 		</main>
 	</Wraper>

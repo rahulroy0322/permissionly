@@ -1,10 +1,10 @@
 {
-  "name": "auth",
+  "name": "forms",
   "version": "0.0.0",
   "description": "",
   "private": true,
   "exports": {
-    ".": "./src/main.ts"
+    ".": "./src/main.tsx"
   },
   "scripts": {
     "build": "tsc -b"
@@ -12,15 +12,14 @@
   "author": "Rahul Roy",
   "license": "MIT",
   "dependencies": {
-    "@tanstack/react-form": "^1.28.5",
-    "api": "workspace:*",
     "form": "workspace:*",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
+    "lucide-react": "^0.545.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "schema": "workspace:*",
     "ui": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "^19.2.5"
+    "@types/react": "^19.2.14"
   }
 }

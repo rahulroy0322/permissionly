@@ -4,7 +4,7 @@ import {
 	DataTable,
 	getCoreRowModel,
 	useReactTable,
-} from '@/components/app/data-table'
+} from 'ui/app/data-table/index'
 import { columns } from './header.column'
 
 type PermissionsTablePropsType = {

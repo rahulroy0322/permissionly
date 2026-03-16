@@ -1,9 +1,9 @@
 import { ListTodo, MessageSquare, Newspaper, Users } from 'lucide-react'
 import type { FC } from 'react'
-import { Left, type LeftPropsType } from '#/dashboard/left'
-import { Right } from '#/dashboard/right'
-import { DashboardStatCard } from '#/dashboard/stat.card'
-import Wraper from '#/wraper'
+import { Left, type LeftPropsType } from '@/dashboard/left'
+import { Right } from '@/dashboard/right'
+import { DashboardStatCard } from '@/dashboard/stat.card'
+import Wraper from '@/wraper'
 
 // TODO!
 // biome-ignore lint/complexity/noBannedTypes: temp

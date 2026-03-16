@@ -8,7 +8,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from '@/components/ui/table'
+} from '../../ui/table'
 
 type DataTablePropsType<T extends Record<string, unknown>> = {
 	table: ReactTable<T>

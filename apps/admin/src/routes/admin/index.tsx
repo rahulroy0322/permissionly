@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import type { FC } from 'react'
-import { type MenuItemType, menu } from '#/sidebar/main'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from 'ui/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from 'ui/ui/card'
+import { type MenuItemType, menu } from '@/sidebar/main'
 
 const items = menu.reduce((acc, { items }) => {
 	acc.push(...items)

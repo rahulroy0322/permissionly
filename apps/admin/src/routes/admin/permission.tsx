@@ -2,7 +2,7 @@ import { createFileRoute, useLoaderData } from '@tanstack/react-router'
 import type { FC } from 'react'
 import { getPermission } from 'src/api/permission'
 import { PermissionsPage } from 'src/components/pages/permissions.page'
-import { AppLoader } from '@/components/app/loader'
+import { AppLoader } from 'ui/app/loader'
 
 const PermissionsRoute: FC = () => {
 	const { meta, permissions } = useLoaderData({

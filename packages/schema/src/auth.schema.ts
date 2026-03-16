@@ -29,6 +29,10 @@ type UserType = Prettify<
 		DefaultsType & {
 			role: RoleSchemaType
 			pass: string | null
+
+			profile?: {
+				url: string
+			}
 		}
 >
 

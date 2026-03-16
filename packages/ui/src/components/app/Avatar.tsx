@@ -1,8 +1,8 @@
 import { UserCircle2 } from 'lucide-react'
 import type { FC } from 'react'
-import { cn } from 'ui/lib/utils'
+import { cn } from '../../lib/utils'
 
-import { Avatar as Av, AvatarFallback, AvatarImage } from 'ui/ui/avatar'
+import { Avatar as Av, AvatarFallback, AvatarImage } from '../ui/avatar'
 
 type AvatarPropsType = {
 	src: string | undefined

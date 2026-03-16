@@ -9,8 +9,8 @@ import './styles.css'
 import 'ui/index.css'
 import { AuthProvider } from 'auth'
 import { type FC, StrictMode } from 'react'
-import { ThemeProvider } from '@/components/app/theme/context'
-import { Toaster } from '@/components/ui/sonner'
+import { ThemeProvider } from 'ui/app/theme/context'
+import { Toaster } from 'ui/ui/sonner'
 import { CONFIG } from './config'
 
 const router = createRouter({

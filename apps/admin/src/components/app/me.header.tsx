@@ -1,6 +1,7 @@
-import { Link } from '@tanstack/react-router'
+import { Link, Navigate } from '@tanstack/react-router'
+import { useAuth } from 'auth'
 import type { FC } from 'react'
-import { Avatar } from '@/components/app/Avatar'
+import { Avatar } from 'ui/app/Avatar'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -10,11 +11,11 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuShortcut,
 	DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from 'ui/ui/dropdown-menu'
 
 type MeHeaderUIPropsType = {
 	name: string
-	src: string
+	src: string | undefined
 }
 
 const MeHeaderUI: FC<MeHeaderUIPropsType> = ({ src, name }) => (
@@ -70,10 +71,16 @@ const MeHeaderUI: FC<MeHeaderUIPropsType> = ({ src, name }) => (
 )
 
 const MeHeader: FC = () => {
+	const { user } = useAuth()
+
+	if (!user) {
+		return <Navigate to="/login" />
+	}
+
 	return (
 		<MeHeaderUI
-			name="Jhon Dow"
-			src=""
+			name={user.name}
+			src={user.profile?.url}
 		/>
 	)
 }

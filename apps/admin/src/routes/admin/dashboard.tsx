@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import type { FC } from 'react'
 import { DashboardPage } from 'src/components/pages/dashboard.page'
 import type { ActivityWithUserType } from 'src/types'
-import type { UserChartPropsType } from '#/dashboard/user.chart'
+import type { UserChartPropsType } from '@/dashboard/user.chart'
 
 const activities = [
 	{

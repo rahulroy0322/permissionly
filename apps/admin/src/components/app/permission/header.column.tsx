@@ -1,12 +1,9 @@
 import { Edit2, Trash2 } from 'lucide-react'
 import type { PermissionSchemaType } from 'schema/permission'
-import { UserIcon } from '#/permission/user.icon'
-import {
-	type ColumnDef,
-	DataTableColumnHeader,
-} from '@/components/app/data-table'
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
+import { type ColumnDef, DataTableColumnHeader } from 'ui/app/data-table/index'
+import { Button } from 'ui/ui/button'
+import { Checkbox } from 'ui/ui/checkbox'
+import { UserIcon } from '@/permission/user.icon'
 import { ActionIcon } from './action.badge'
 import { ResourceIcon } from './resource.icon'
 import { StateIcon } from './state.badge'

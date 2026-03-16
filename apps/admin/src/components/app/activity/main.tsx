@@ -2,8 +2,8 @@ import { Link } from '@tanstack/react-router'
 import { ArrowUpRight } from 'lucide-react'
 import type { FC } from 'react'
 import type { ActivityWithUserType } from 'src/types'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from 'ui/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from 'ui/ui/card'
 import { ActivityCard } from './activity.card'
 
 type ActivitiesPropsType = {

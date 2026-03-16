@@ -6,7 +6,7 @@ import {
 } from 'lucide-react'
 import type { FC } from 'react'
 import type { PermissionSchemaType } from 'schema/permission'
-import { Badge } from '@/components/ui/badge'
+import { Badge } from 'ui/ui/badge'
 
 const getIconAndText = (
 	value: PermissionSchemaType['value']

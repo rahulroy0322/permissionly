@@ -2,8 +2,8 @@
 import type { Column } from '@tanstack/react-table'
 import { ChevronDown, ChevronsUpDown, ChevronUp } from 'lucide-react'
 import type { HTMLAttributes, ReactNode } from 'react'
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import { cn } from '../../../lib/utils'
+import { Button } from '../../ui/button'
 
 type DataTableColumnHeaderProps<TData, TValue> = {
 	column: Column<TData, TValue>

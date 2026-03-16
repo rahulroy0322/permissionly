@@ -1,16 +1,16 @@
 import { type FileRoutesByPath, Link } from '@tanstack/react-router'
 import { LayoutDashboard, ListTodo, Newspaper, Shield } from 'lucide-react'
 import type { FC, ReactNode } from 'react'
-import { LogoText } from '#/logo'
-import { SidebarContent } from '@/components/app/sidebar/content'
+import { SidebarContent } from 'ui/app/sidebar/content'
 import {
 	SidebarGroup,
 	SidebarGroupContent,
 	SidebarGroupItem,
 	SidebarGroupLabel,
-} from '@/components/app/sidebar/group'
-import { SidebarHeader, SidebarLogo } from '@/components/app/sidebar/header'
-import { Sidebar } from '@/components/app/sidebar/main'
+} from 'ui/app/sidebar/group'
+import { SidebarHeader, SidebarLogo } from 'ui/app/sidebar/header'
+import { Sidebar } from 'ui/app/sidebar/main'
+import { LogoText } from '@/logo'
 
 type MenuGroupType = {
 	title: string

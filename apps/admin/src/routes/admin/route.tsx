@@ -7,10 +7,10 @@ import {
 import { useAuth } from 'auth'
 import type { FC } from 'react'
 import { CONFIG } from 'src/config'
+import { SidebarProvider } from 'ui/app/sidebar/context'
 import { AppLoader } from 'ui/components/app/loader.tsx'
-import { AdminHeader } from '#/admin/header'
-import { AppSidebar } from '#/sidebar/main'
-import { SidebarProvider } from '@/components/app/sidebar/context'
+import { AdminHeader } from '@/admin/header'
+import { AppSidebar } from '@/sidebar/main'
 
 const AdminLayoutImpl: FC = () => (
 	<div className="h-screen w-screen flex overflow-hidden">

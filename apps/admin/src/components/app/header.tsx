@@ -1,6 +1,8 @@
 import { Link } from '@tanstack/react-router'
 import { Menu } from 'lucide-react'
 import type { FC } from 'react'
+import { Avatar } from 'ui/app/Avatar'
+import { useIsMobile } from 'ui/hooks/use-mobile.ts'
 import { Button } from 'ui/ui/button'
 import {
 	DropdownMenu,
@@ -9,8 +11,6 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from 'ui/ui/dropdown-menu'
-import { Avatar } from '@/components/app/Avatar'
-import { useIsMobile } from '@/hooks/use-mobile'
 import { LogoText } from './logo'
 import Wraper from './wraper'
 

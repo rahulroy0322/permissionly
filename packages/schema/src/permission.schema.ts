@@ -9,13 +9,21 @@ const permissionSchema = z.union([
 		role: roleSchema,
 		resorce: resorcessSchema.optional().nullable(),
 		action: actionSchema.optional().nullable(),
-		value: z.boolean().default(false),
+		value: z
+			.boolean({
+				error: '"value" must me boolean',
+			})
+			.default(false),
 	}),
 	z.object({
 		role: roleSchema,
 		resorce: resorcessSchema,
 		action: actionSchema.optional().nullable(),
-		value: z.boolean().default(false),
+		value: z
+			.boolean({
+				error: '"value" must me boolean',
+			})
+			.default(false),
 	}),
 	z.object({
 		role: roleSchema,

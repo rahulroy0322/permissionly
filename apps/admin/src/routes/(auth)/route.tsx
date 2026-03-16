@@ -1,7 +1,7 @@
 import { createFileRoute, Navigate, Outlet } from '@tanstack/react-router'
 import { useAuth } from 'auth'
 import type { FC } from 'react'
-import { ThemeSwitch } from '@/components/app/theme/main'
+import { ThemeSwitch } from 'ui/app/theme/main'
 
 const AuthLayout: FC = () => {
 	const { user } = useAuth()

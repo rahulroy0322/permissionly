@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { LoginForm, SocialLogins } from 'auth'
 import type { FC } from 'react'
-import { LeftPart } from '#/auth/left'
-import { RightPart } from '#/auth/right'
-import { Button } from '@/components/ui/button'
+import { Button } from 'ui/ui/button'
+import { LeftPart } from '@/auth/left'
+import { RightPart } from '@/auth/right'
 
 const LoginPage: FC = () => (
 	<>

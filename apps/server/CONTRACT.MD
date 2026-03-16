@@ -18,11 +18,16 @@ type PostType = {
     updatedAt: string;
 }
 
+type ProfileType = {
+    url: string;
+}
+
 type UserType = {
     name: string;
     email: string;
     pass: string | null;
     role: RoleType;
+    profile?: ProfileType;
     id: string;
     createdAt: string;
     updatedAt: string;

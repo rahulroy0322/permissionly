@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import type { ActivityWithUserType } from 'src/types'
-import { Activities } from '#/activity/main'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from 'ui/ui/card'
+import { Activities } from '@/activity/main'
 import { UserChart, type UserChartPropsType } from './user.chart'
 
 type LeftUserPropsType = Pick<UserChartPropsType, 'data'>

@@ -6,7 +6,7 @@ import {
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
-} from '@/components/ui/chart'
+} from 'ui/ui/chart'
 
 const config = {
 	super: {

@@ -1,7 +1,7 @@
 import type { LucideIcon } from 'lucide-react'
 import type { FC } from 'react'
-import { Card } from '@/components/ui/card'
-import { cn } from '@/lib/utils'
+import { cn } from 'ui/lib/utils'
+import { Card } from 'ui/ui/card'
 
 type PostStatCardPropsType = {
 	value: string

@@ -6,7 +6,7 @@ import {
 	BreadcrumbLink,
 	BreadcrumbList,
 	BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb'
+} from 'ui/ui/breadcrumb'
 
 const Path: FC = () => {
 	const path = useLocation()

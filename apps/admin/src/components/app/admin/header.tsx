@@ -1,8 +1,8 @@
 import type { FC } from 'react'
-import { MeHeader } from '#/me.header'
-import Wraper from '#/wraper'
-import { SidebarTrigger } from '@/components/app/sidebar/main'
-import { ThemeSwitch } from '@/components/app/theme/main'
+import { SidebarTrigger } from 'ui/app/sidebar/main'
+import { ThemeSwitch } from 'ui/app/theme/main'
+import { MeHeader } from '@/me.header'
+import Wraper from '@/wraper'
 import { Path } from './path'
 
 const AdminHeader: FC = () => (

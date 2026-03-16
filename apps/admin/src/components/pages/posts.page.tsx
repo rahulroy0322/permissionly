@@ -1,9 +1,9 @@
 import { Clock, Eye, Layout } from 'lucide-react'
 import type { FC } from 'react'
 import type { PostWithUserType } from 'schema/post'
-import { PostStatCard } from '#/post/stat.card'
-import { PostsTable } from '#/post/table'
-import Wraper from '#/wraper'
+import { PostStatCard } from '@/post/stat.card'
+import { PostsTable } from '@/post/table'
+import Wraper from '@/wraper'
 
 type PostsPagePropsType = {
 	posts: PostWithUserType[]

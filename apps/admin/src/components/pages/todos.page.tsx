@@ -1,11 +1,11 @@
 import { LayoutTemplate, List, Table } from 'lucide-react'
 import type { FC } from 'react'
 import type { TodoWithSubAndUserType } from 'schema/todo'
-import { BoxLayout } from '#/todo/box.layout'
-import { TableLayout } from '#/todo/table.layout'
-import Wraper from '#/wraper'
-import { Button } from '@/components/ui/button'
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Button } from 'ui/ui/button'
+import { Tabs, TabsList, TabsTrigger } from 'ui/ui/tabs'
+import { BoxLayout } from '@/todo/box.layout'
+import { TableLayout } from '@/todo/table.layout'
+import Wraper from '@/wraper'
 
 type TodosPagePropsType = {
 	todos: TodoWithSubAndUserType[]

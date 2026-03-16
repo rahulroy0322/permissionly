@@ -2,15 +2,15 @@ import { Link } from '@tanstack/react-router'
 import { type LucideIcon, Settings, Shield } from 'lucide-react'
 import type { FC } from 'react'
 import type { RoleSchemaType } from 'schema/role'
-import { Button } from '@/components/ui/button'
+import { cn } from 'ui/lib/utils'
+import { Button } from 'ui/ui/button'
 import {
 	Card,
 	CardContent,
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from '@/components/ui/card'
-import { cn } from '@/lib/utils'
+} from 'ui/ui/card'
 import { RightChart } from './right.chart'
 
 type StatPropsType = {

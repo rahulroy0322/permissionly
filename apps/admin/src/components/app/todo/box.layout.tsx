@@ -8,9 +8,9 @@ import {
 } from 'lucide-react'
 import type { FC } from 'react'
 import type { TodoWithSubAndUserType } from 'schema/todo'
-import { Avatar } from '@/components/app/Avatar'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { Avatar } from 'ui/app/Avatar'
+import { Badge } from 'ui/ui/badge'
+import { Button } from 'ui/ui/button'
 import {
 	Card,
 	CardAction,
@@ -19,15 +19,15 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from '@/components/ui/card'
+} from 'ui/ui/card'
 import {
 	Empty,
 	EmptyDescription,
 	EmptyHeader,
 	EmptyMedia,
 	EmptyTitle,
-} from '@/components/ui/empty'
-import { TabsContent } from '@/components/ui/tabs'
+} from 'ui/ui/empty'
+import { TabsContent } from 'ui/ui/tabs'
 import { time } from './utlis'
 
 type TitlePropsType = Pick<TodoWithSubAndUserType, 'completed' | 'title'>

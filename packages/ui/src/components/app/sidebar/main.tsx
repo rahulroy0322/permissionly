@@ -1,7 +1,7 @@
 import { PanelLeftIcon } from 'lucide-react'
 import type { ComponentProps, FC } from 'react'
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import { cn } from '../../../lib/utils'
+import { Button } from '../../ui/button'
 import { useSidebar } from './context'
 
 type SidebarPropsType = ComponentProps<'aside'>

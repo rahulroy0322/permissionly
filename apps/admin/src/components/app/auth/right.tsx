@@ -1,7 +1,7 @@
 import type { ComponentProps, FC } from 'react'
-import { cn } from '@/lib/utils'
-import { LoginSvg } from '@/svg/login'
-import { RegisterSvg } from '@/svg/register'
+import { cn } from 'ui/lib/utils'
+import { LoginSvg } from 'ui/svg/login.tsx'
+import { RegisterSvg } from 'ui/svg/register.tsx'
 
 type RightPartPropsType = {
 	mode: 'login' | 'register'

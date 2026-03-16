@@ -1,12 +1,9 @@
 import { Link } from '@tanstack/react-router'
 import { Edit2, LinkIcon, Trash2 } from 'lucide-react'
 import type { PostWithUserType } from 'schema/post'
-import {
-	type ColumnDef,
-	DataTableColumnHeader,
-} from '@/components/app/data-table'
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
+import { type ColumnDef, DataTableColumnHeader } from 'ui/app/data-table/index'
+import { Button } from 'ui/ui/button'
+import { Checkbox } from 'ui/ui/checkbox'
 
 type PostKeyType = keyof PostWithUserType
 

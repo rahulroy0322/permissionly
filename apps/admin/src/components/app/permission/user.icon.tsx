@@ -1,7 +1,7 @@
 import { type LucideIcon, User, UserLock, UserStar, Users } from 'lucide-react'
 import type { FC } from 'react'
 import type { PermissionSchemaType } from 'schema/permission'
-import { cn } from '@/lib/utils'
+import { cn } from 'ui/lib/utils'
 
 const getIconAndText = (
 	role: PermissionSchemaType['role']

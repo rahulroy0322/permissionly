@@ -5,7 +5,7 @@ import type { TodoType } from './todo.schema'
 // * here
 type AttrsType = TodoType
 
-const operatorSchema = z.enum([
+const operators = [
 	'eq',
 	'neq',
 
@@ -20,7 +20,9 @@ const operatorSchema = z.enum([
 
 	'in',
 	'notIn',
-])
+] as const
+
+const operatorSchema = z.enum(operators)
 
 const refSchema = z.custom<ConditionRefType>(
 	(val) => typeof val === 'string' && val.includes('.')
@@ -93,4 +95,4 @@ type ConditionType = z.infer<typeof conditionSchema>
 
 export type { ConditionType, LeafType, NotType, AndType, OrType }
 
-export { conditionSchema }
+export { conditionSchema, operators }

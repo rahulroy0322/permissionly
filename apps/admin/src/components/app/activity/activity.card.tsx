@@ -1,14 +1,14 @@
 import { Ban, Clock, type LucideProps, Pen, Plus, Trash2 } from 'lucide-react'
 import type { FC } from 'react'
 import type { ActionSchemaType } from 'schema/action'
+import { cn } from 'ui/lib/utils'
 import {
 	Card,
 	CardContent,
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from '@/components/ui/card'
-import { cn } from '@/lib/utils'
+} from 'ui/ui/card'
 
 type ActivityCardIconPropsType = Pick<ActivityCardPropsType, 'action'> &
 	LucideProps
