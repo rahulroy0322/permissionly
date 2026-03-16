@@ -1,6 +1,7 @@
 # Git
 .git
 .gitignore
+**/.gitignore 
 
 # Dependency directories
 **/node_modules
@@ -65,4 +66,6 @@ res
 _apps
 *.md
 *.MD
+**/*.md
+**/*.MD
 

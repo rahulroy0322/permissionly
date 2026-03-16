@@ -1,0 +1,67 @@
+FROM node:lts-alpine AS pnpm
+
+RUN npm install -g pnpm 
+RUN pnpm config set store-dir ~/.pnpm-store
+
+FROM pnpm  as installer
+
+WORKDIR /app
+
+COPY package.json pnpm-workspace.yaml turbo.json ./
+
+COPY apps/admin/package.json apps/admin/package.json
+
+COPY packages/ts-config/package.json packages/ts-config/package.json
+COPY packages/policy/package.json packages/policy/package.json
+COPY packages/schema/package.json packages/schema/package.json
+COPY packages/ui/package.json packages/ui/package.json
+COPY packages/forms/package.json packages/forms/package.json
+COPY packages/form/package.json packages/form/package.json
+COPY packages/auth/package.json packages/auth/package.json
+COPY packages/api/package.json packages/api/package.json
+
+RUN pnpm i
+
+FROM pnpm AS code
+
+WORKDIR /app
+
+COPY apps/admin apps/admin
+
+COPY packages/ts-config/ packages/ts-config/
+COPY packages/policy/ packages/policy/
+COPY packages/schema/ packages/schema/
+COPY packages/ui/ packages/ui/
+COPY packages/forms/ packages/forms/
+COPY packages/form/ packages/form/
+COPY packages/auth/ packages/auth/
+COPY packages/api/ packages/api/
+
+FROM pnpm AS prunner
+
+WORKDIR /app
+
+COPY --from=installer app/ .
+COPY --from=code app/ .
+
+RUN pnpm turbo prune admin
+
+FROM pnpm AS builder
+
+WORKDIR /app
+
+COPY --from=installer app/ .
+COPY --from=prunner /app/out .
+
+RUN pnpm build
+
+# actual
+FROM nginx:stable-alpine AS runner
+
+RUN rm -rf /usr/share/nginx/html/*
+
+COPY --from=builder /app/apps/admin/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
