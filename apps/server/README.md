@@ -33,7 +33,7 @@ pnpm dev --filter server
 
 here onwords run in root of the project
 
-build iamge
+build image
 
 
 ```bash

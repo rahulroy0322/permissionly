@@ -3,7 +3,7 @@ FROM node:lts-alpine AS pnpm
 RUN npm install -g pnpm 
 RUN pnpm config set store-dir ~/.pnpm-store
 
-FROM pnpm  as base
+FROM pnpm AS base
 
 WORKDIR /app
 
