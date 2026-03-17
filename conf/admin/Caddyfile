@@ -1,0 +1,30 @@
+{
+    log {
+        level INFO
+    }
+}
+
+:80 {
+    root * /usr/share/caddy
+    encode gzip zstd
+
+    file_server
+    try_files {path} /index.html
+    
+    log {
+        output stdout
+        format console
+    }
+}
+
+# localhost {
+#     root * /usr/share/caddy
+#     encode gzip zstd
+#     file_server
+#     try_files {path} /index.html
+
+#     log {
+#         output stdout
+#         format console
+#     }
+# }

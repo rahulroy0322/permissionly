@@ -3,7 +3,7 @@ FROM node:lts-alpine AS pnpm
 RUN npm install -g pnpm 
 RUN pnpm config set store-dir ~/.pnpm-store
 
-FROM pnpm  as installer
+FROM pnpm  as base
 
 WORKDIR /app
 
@@ -22,10 +22,6 @@ COPY packages/api/package.json packages/api/package.json
 
 RUN pnpm i
 
-FROM pnpm AS code
-
-WORKDIR /app
-
 COPY apps/admin apps/admin
 
 COPY packages/ts-config/ packages/ts-config/
@@ -37,31 +33,17 @@ COPY packages/form/ packages/form/
 COPY packages/auth/ packages/auth/
 COPY packages/api/ packages/api/
 
-FROM pnpm AS prunner
-
-WORKDIR /app
-
-COPY --from=installer app/ .
-COPY --from=code app/ .
-
-RUN pnpm turbo prune admin
-
-FROM pnpm AS builder
-
-WORKDIR /app
-
-COPY --from=installer app/ .
-COPY --from=prunner /app/out .
-
 RUN pnpm build
 
 # actual
-FROM nginx:stable-alpine AS runner
+FROM caddy:alpine AS runner
 
-RUN rm -rf /usr/share/nginx/html/*
+WORKDIR /usr/share/caddy
 
-COPY --from=builder /app/apps/admin/dist /usr/share/nginx/html
+COPY --from=base /app/apps/admin/dist ./
+COPY ./conf/admin/Caddyfile /etc/caddy/Caddyfile
 
 EXPOSE 80
+EXPOSE 443
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["caddy", "run","--config", "/etc/caddy/Caddyfile"]
