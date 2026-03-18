@@ -7,6 +7,7 @@ import { createPermission } from 'src/api/permission'
 import { Button } from 'ui/ui/button'
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
 	DialogDescription,
 	DialogTitle,
@@ -49,6 +50,7 @@ const PermissionCreateFrom: FC = () => {
 				<DialogTitle>Add Permission</DialogTitle>
 				<DialogDescription>Define New Permission</DialogDescription>
 				<PermissionFrom
+					Button={DialogClose}
 					disabled={loading}
 					handleSubmit={handleSubmit}
 				/>

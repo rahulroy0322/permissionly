@@ -53,7 +53,7 @@ const RightChartUI: FC<RightChartUIPropsType> = ({ data, total }) => (
 				strokeWidth={5}
 			>
 				<Label
-				// @ts-ignore
+					// @ts-ignore
 					content={({ viewBox }) => {
 						if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
 							return (

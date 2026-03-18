@@ -1,5 +1,5 @@
-import type { PostWithUserType } from 'schema/post'
-import { getWithToken } from './main'
+import type { PostSchemaType, PostWithUserType } from 'schema/post'
+import { getWithToken, postWithToken } from './main'
 
 const getPosts = () =>
 	getWithToken<{
@@ -8,4 +8,11 @@ const getPosts = () =>
 		url: 'post',
 	})
 
-export { getPosts }
+const createPost = (post: PostSchemaType) =>
+	postWithToken({
+		url: 'post',
+		body: post,
+	})
+
+
+export { getPosts, createPost }

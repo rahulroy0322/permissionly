@@ -1,6 +1,8 @@
-import { Clock, Eye, Layout } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
+import { Clock, Eye, Layout, Plus } from 'lucide-react'
 import type { FC } from 'react'
 import type { PostWithUserType } from 'schema/post'
+import { Button } from 'ui/ui/button'
 import { PostStatCard } from '@/post/stat.card'
 import { PostsTable } from '@/post/table'
 import Wraper from '@/wraper'
@@ -50,6 +52,16 @@ const PostsPage: FC<PostsPagePropsType> = ({
 					label="LAST UPDATED"
 					value={dateFormat(new Date(lastChanged))}
 				/>
+			</div>
+
+			<div className="flex items-end">
+				<Button
+					className={'ml-auto'}
+					nativeButton={false}
+					render={<Link to="/admin/post/create" />}
+				>
+					<Plus size={20} /> new Post
+				</Button>
 			</div>
 
 			<PostsTable data={posts} />

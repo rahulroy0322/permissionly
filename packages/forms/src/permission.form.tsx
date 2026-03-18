@@ -93,11 +93,13 @@ const Leaf: FC<LeafPropsType> = ({ handleChange, value }) => (
 )
 
 type PermissionFromPropsType = {
+	Button: FC
 	disabled: boolean
 	handleSubmit: (value: PermissionSchemaType) => void
 }
 
 const PermissionFrom: FC<PermissionFromPropsType> = ({
+	Button: B,
 	disabled,
 	handleSubmit: hs,
 }) => {
@@ -506,6 +508,7 @@ const PermissionFrom: FC<PermissionFromPropsType> = ({
 				<Button
 					className="w-full"
 					disabled={disabled}
+					render={<B />}
 					type="submit"
 				>
 					Create Permission
